@@ -23,11 +23,6 @@ let api = Axios.create({
 export default new Vuex.Store({
   state: {
     user: {},
-    boards: [],
-    lists: [],
-    tasks: {},
-    comments: {},
-    activeBoard: {}
   },
   mutations: {
     resetState(state, user) {
@@ -36,18 +31,6 @@ export default new Vuex.Store({
 
     setUser(state, user) {
       state.user = user
-    },
-    setBoards(state, data) {
-      state.boards = data
-    },
-    setLists(state, data) {
-      state.lists = data
-    },
-    setTasks(state, data) {
-      Vue.set(state.tasks, data.listId, data.tasks)//state.tasks[data.listId] = data.tasks
-    },
-    setComments(state, data) {
-      Vue.set(state.comments, data.taskId, data.comments)
     },
   },
   actions: {
@@ -60,7 +43,7 @@ export default new Vuex.Store({
         let user = await AuthService.Register(creds)
         commit('setUser', user)
         router.push({
-          name: "boards"
+          name: "home"
         })
       } catch (e) {
         console.warn(e.message)
@@ -74,7 +57,7 @@ export default new Vuex.Store({
         let user = await AuthService.Login(creds)
         commit('setUser', user)
         router.push({
-          name: "boards"
+          name: "home"
         })
       } catch (e) {
         console.warn(e.message)
@@ -92,117 +75,5 @@ export default new Vuex.Store({
         console.warn(e.message)
       }
     },
-    //#endregion
-
-
-    //#region -- BOARDS --
-    getBoards({ commit, dispatch }) {
-      api.get('boards')
-        .then(res => {
-          commit('setBoards', res.data)
-        })
-    },
-
-    getLists({ commit, dispatch }, boardId) {
-      api.get(`boards/${boardId}/lists`)
-        .then(res => {
-          commit('setLists', res.data)
-        })
-    },
-    getTasks({ commit, dispatch }, listId) {
-      api.get(`lists/${listId}/tasks`)
-        .then(res => {
-          commit('setTasks', { tasks: res.data, listId })
-        })
-    },
-    getComments({ commit, dispatch }, taskId) {
-      api.get(`tasks/${taskId}/comments`)
-        .then(res => {
-          commit('setComments', { comments: res.data, taskId })
-        })
-    },
-    async addBoard({ commit, dispatch }, boardData) {
-      try {
-        let res = await api.post('boards', boardData)
-        dispatch('getBoards')
-      } catch (error) {
-        console.error(error)
-      }
-    },
-    //#endregion
-
-
-    //#region -- LISTS --
-    async addList({ commit, dispatch }, payload) {
-      try {
-        await api.post('/lists', payload)
-        dispatch("getLists", payload.boardId)
-      } catch (error) {
-        console.error(error)
-      }
-    },
-
-    async addTask({ commit, dispatch }, payload) {
-      try {
-        await api.post('/tasks', payload)
-        dispatch('getTasks', payload.listId) //commit to addTask in mutations, giving res.data
-      } catch (error) {
-        console.error(error)
-      }
-    },
-    async addComment({ commit, dispatch }, payload) {
-      try {
-        await api.post('/comments', payload)
-        dispatch('getComments', payload.taskId)
-      } catch (error) {
-        console.error(error)
-      }
-    },
-
-    async moveTask({ commit, dispatch }, payload) {
-      try {
-        let res = await api.put('/tasks/' + payload.taskId, payload) //adds the task Id onto URL
-        dispatch('getTasks', payload.listId) //update new list with task
-        dispatch('getTasks', payload.oldListId) //update old list with one less task
-      } catch (error) {
-        console.error(error)
-      }
-    },
-
-    async deleteBoard({ commit, dispatch }, board) {
-      try {
-        let res = await api.delete('/boards/' + board)
-        dispatch('getBoards')
-        router.push("/boards")
-      } catch (error) {
-        console.error(error)
-      }
-    },
-
-    async deleteList({ commit, dispatch }, list) {
-      try {
-        let res = await api.delete('/lists/' + list._id)
-        dispatch('getLists', list.boardId)
-      } catch (error) {
-        console.error(error)
-      }
-    },
-    async deleteTask({ commit, dispatch }, task) {
-      try {
-        let res = await api.delete('/tasks/' + task._id)
-        dispatch('getTasks', task.listId)
-      } catch (error) {
-        console.error(error)
-      }
-    },
-    async deleteComment({ commit, dispatch }, comment) {
-      try {
-        let res = await api.delete('/comments/' + comment._id)
-        dispatch('getComments', comment.taskId)
-      } catch (error) {
-        console.error(error)
-      }
-    }
-    //#endregion
   }
 })

@@ -7,9 +7,7 @@
 <script>
 export default {
   name: "App",
-  mounted() {
-    this.$store.dispatch("getBoards"); //which board has the lists
-  }
+  mounted() {}
 };
 </script>
 

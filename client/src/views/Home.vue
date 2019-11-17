@@ -127,27 +127,15 @@
 import Auth from "../AuthService";
 
 export default {
-  name: "boards",
+  name: "home",
   mounted() {
-    this.$store.dispatch("getBoards"); //which board has the lists
+    //which board has the lists
   },
   data() {
-    return {
-      newBoard: {
-        title: ""
-      }
-    };
+    return {};
   },
-  computed: {
-    boards() {
-      return this.$store.state.boards;
-    }
-  },
+  computed: {},
   methods: {
-    addBoard() {
-      this.$store.dispatch("addBoard", this.newBoard);
-      this.newBoard = { title: "" };
-    },
     logout() {
       this.$store.dispatch("logout");
     }
