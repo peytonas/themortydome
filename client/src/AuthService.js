@@ -1,5 +1,4 @@
 import Axios from 'axios'
-
 let baseUrl = location.host.includes('localhost') ? '//localhost:3000/' : '/'
 
 let auth = Axios.create({
@@ -14,7 +13,7 @@ export default class AuthService {
       let res = await auth.post('login', creds)
       return res.data
     } catch (e) {
-      throw new Error(`[login failed] : ${!e.response ? 'No response from server' : e.response.data}`)
+      throw new Error(`[login failed] : ${!e.response ? 'No response from server' : e.response.data.error}`)
     }
   }
   static async Register(creds) {
@@ -23,6 +22,7 @@ export default class AuthService {
       return res.data
     } catch (e) {
       throw new Error(`[registration failed] : ${!e.response ? 'No response from server' : e.response.data.error}`)
+
     }
   }
   static async Logout() {
@@ -32,7 +32,6 @@ export default class AuthService {
     } catch (e) {
       throw new Error(`[logout failed] : ${!e.response ? 'No response from server' : e.response.data.error}`)
     }
-
   }
   static async Authenticate() {
     try {

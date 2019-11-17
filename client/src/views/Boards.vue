@@ -1,5 +1,10 @@
 <template>
 <body class="container-fluid bg">
+  <div class="col-1 mt-2">
+    <button class="nes-btn is-error text-white" @click="logout()">
+      <i class="nes-icon close is-small"></i>
+    </button>
+  </div>
   <div class="row justify-content-around">
     <div class="col-6 text-center nes-container is-centered is-dark is-rounded">
       <h3 class="nes-text is-warning">WELCOME TO</h3>
@@ -119,28 +124,42 @@
 </template>
 
 <script>
+import Auth from "../AuthService";
+
 export default {
-  name: "HelloWorld",
-  props: {
-    msg: String
+  name: "boards",
+  mounted() {
+    this.$store.dispatch("getBoards"); //which board has the lists
+  },
+  data() {
+    return {
+      newBoard: {
+        title: ""
+      }
+    };
+  },
+  computed: {
+    boards() {
+      return this.$store.state.boards;
+    }
+  },
+  methods: {
+    addBoard() {
+      this.$store.dispatch("addBoard", this.newBoard);
+      this.newBoard = { title: "" };
+    },
+    logout() {
+      this.$store.dispatch("logout");
+    }
   }
 };
 </script>
-
-<!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-h3 {
-  /* margin: 40px 0 0; */
+.font {
+  font-family: "Press Start 2p";
+  font-size: 10px;
 }
-ul {
-  list-style-type: none;
-  padding: 0;
-}
-li {
-  display: inline-block;
-  margin: 0 10px;
-}
-a {
-  color: #42b983;
+.text-color {
+  color: #908a99;
 }
 </style>

@@ -1,12 +1,17 @@
 <template>
   <div id="app">
-    <div id="nav">
-      <router-link to="/">Home</router-link>|
-      <router-link to="/about">About</router-link>
-    </div>
     <router-view />
   </div>
 </template>
+
+<script>
+export default {
+  name: "App",
+  mounted() {
+    this.$store.dispatch("getBoards"); //which board has the lists
+  }
+};
+</script>
 
 <style>
 #app {
@@ -18,7 +23,7 @@
 }
 
 #nav {
-  padding: 5px;
+  padding: 30px;
 }
 
 #nav a {

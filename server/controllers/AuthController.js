@@ -1,9 +1,9 @@
 import express from 'express'
-import userService from '../services/UserService';
+import UserService from '../services/UserService';
 import { Authorize } from '../middleware/authorize'
 
-const _userService = new userService()
-const _repo = _userService.repository
+let _userService = new UserService().repository
+
 //PUBLIC
 export default class AuthController {
     constructor() {
@@ -13,8 +13,12 @@ export default class AuthController {
             .use(Authorize.authenticated)
             .get('/authenticate', this.authenticate)
             .delete('/logout', this.logout)
+            .use(this.defaultRoute)
     }
 
+    defaultRoute(req, res, next) {
+        next({ status: 404, message: 'No Such Route' })
+    }
     async register(req, res, next) {
         //VALIDATE PASSWORD LENGTH
         if (req.body.password.length < 6) {
@@ -24,11 +28,10 @@ export default class AuthController {
         }
         try {
             //CHANGE THE PASSWORD TO A HASHED PASSWORD
-            console.log('here')
-            req.body.hash = _userService.generateHash(req.body.password)
+            req.body.hash = UserService.generateHash(req.body.password)
 
             //CREATE THE USER
-            let user = await _repo.create(req.body)
+            let user = await _userService.create(req.body)
             //REMOVE THE PASSWORD BEFORE RETURNING
             delete user._doc.hash
             //SET THE SESSION UID (SHORT FOR USERID)
@@ -36,13 +39,13 @@ export default class AuthController {
             res.status(201).send(user)
         }
         catch (err) {
-            next(err)
+            res.status(400).send(err)
         }
     }
 
     async login(req, res, next) {
         try {
-            let user = await _repo.findOne({ email: req.body.email })
+            let user = await _userService.findOne({ email: req.body.email })
             if (!user) {
                 return res.status(400).send("Invalid Username Or Password")
             }
@@ -63,7 +66,7 @@ export default class AuthController {
 
     async authenticate(req, res, next) {
         try {
-            let user = await _repo.findOne({ _id: req.session.uid })
+            let user = await _userService.findOne({ _id: req.session.uid })
             if (!user) {
                 return res.status(401).send({
                     error: 'Please login to continue'
@@ -91,4 +94,5 @@ export default class AuthController {
         } catch (error) { next(error) }
     }
 }
+
 
