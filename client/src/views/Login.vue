@@ -1,6 +1,7 @@
 <template>
-  <div class="row justify-content-center mt-2">
-    <div class="col-5 font">
+<body class="container-fluid bg-login min-height">
+  <div class="row justify-content-center">
+    <div class="col-5 font mt-1">
       <form v-if="loginForm" @submit.prevent="loginUser">
         <input class="nes-input" type="email" v-model="creds.email" placeholder="email" />
         <input class="nes-input" type="password" v-model="creds.password" placeholder="password" />
@@ -12,7 +13,7 @@
         <input class="nes-input" type="password" v-model="newUser.password" placeholder="password" />
         <button class="nes-btn is-primary mt-2">Create Account</button>
       </form>
-      <div class="action text-color mt-1" @click="loginForm = !loginForm">
+      <div class="mt-1 text-white" @click="loginForm = !loginForm">
         <p v-if="loginForm">
           <b>No account? Click here to Register</b>
         </p>
@@ -22,6 +23,7 @@
       </div>
     </div>
   </div>
+</body>
 </template>
 
 <script>
@@ -59,14 +61,14 @@ export default {
 </script>
 
 <style>
-.action {
-  cursor: pointer;
-}
-.text-color {
-  color: #908a99;
-}
 .font {
   font-family: "Press Start 2p";
   font-size: 10px;
+}
+.bg-login {
+  background-image: url("https://art.ngfiles.com/images/389000/389848_mikeagar85_rick-and-morty-02-duel-monitor-wallpaper.jpg?f1448441179");
+  background-repeat: no-repeat;
+  background-size: auto;
+  background-position: center;
 }
 </style>

@@ -4,6 +4,8 @@ import Router from 'vue-router'
 import Home from './views/Home.vue'
 // @ts-ignore
 import Login from './views/Login.vue'
+// @ts-ignore
+import Create from './views/Create.vue'
 
 Vue.use(Router)
 
@@ -17,6 +19,11 @@ export default new Router({
     path: '/login',
     name: 'login',
     component: Login
+  },
+  {
+    path: '/create',
+    name: 'create',
+    component: Create
   },
   {
     path: "*",

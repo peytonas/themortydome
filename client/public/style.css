@@ -8,6 +8,7 @@
   background-size: auto;
   background-position: center;
 }
+
 .logo {
   height: 200px;
   width: auto;
@@ -19,6 +20,10 @@
   height: 50px;
   width: auto;
 }
+.min-height {
+  height: 690px;
+}
+
 ::-webkit-scrollbar {
   display: none;
 }
