@@ -23,7 +23,11 @@
       <div class="nes-select is-success">
         <select required id="success_select">
           <option value disabled selected hidden>pick-a-morty...</option>
-          <option value="0">Morty</option>
+          <option
+            v-for="fighter in this.$store.state.fighters"
+            :fighterProp="fighter.name"
+            :key="fighter._id"
+          >{{fighter.name}}</option>
         </select>
       </div>
     </div>
@@ -45,9 +49,9 @@ import Item from "../components/ItemComponent";
 
 export default {
   name: "home",
-  // mounted() {
-  //   this.$store.dispatch("getFighter", this.fighterProp._id);
-  // },
+  mounted() {
+    this.$store.dispatch("getFighters");
+  },
   methods: {
     logout() {
       // @ts-ignore
