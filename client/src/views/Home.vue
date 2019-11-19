@@ -30,6 +30,9 @@
           >{{fighter.name}}</option>
         </select>
       </div>
+      <div class="text-center">
+        <button class="nes-btn is-success mt-2" @click="selectMorty()">select</button>
+      </div>
     </div>
   </div>
   <div class="row justify-content-left"></div>
@@ -53,6 +56,10 @@ export default {
     this.$store.dispatch("getFighters");
   },
   methods: {
+    //NOTE will make chosen Morty the "activePlayer" and render via PlayerComponent .
+    selectMorty() {
+      this.$store.state.getPlayer();
+    },
     logout() {
       // @ts-ignore
       const toast = Swal.mixin({
