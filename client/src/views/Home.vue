@@ -18,11 +18,20 @@
       <h1 class="nes-text is-primary">THE MORTYDOME</h1>
     </div>
   </div>
-  <div class="row justify-content-between"></div>
+  <div class="row justify-content-between">
+    <div class="col-4">
+      <div class="nes-select is-success">
+        <select required id="success_select">
+          <option value disabled selected hidden>pick-a-morty...</option>
+          <option value="0">Morty</option>
+        </select>
+      </div>
+    </div>
+  </div>
   <div class="row justify-content-left"></div>
   <div class="row justify-content-center pt-2 mb-2">
     <div class="col-4 text-center">
-      <button class="nes-btn is-primary" onclick="reset()">RESET</button>
+      <button class="nes-btn is-primary" onclick="reset()">reset</button>
     </div>
   </div>
 </body>
@@ -39,7 +48,6 @@ export default {
   // mounted() {
   //   this.$store.dispatch("getFighter", this.fighterProp._id);
   // },
-  props: ["fighterProp"],
   methods: {
     logout() {
       // @ts-ignore

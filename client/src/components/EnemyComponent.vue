@@ -24,7 +24,7 @@ export default {
   props: ["fighterProp"],
   computed: {
     fighters() {
-      return this.$store.state.fighters;
+      return this.$store.state.activeEnemy;
     }
   },
   mounted() {}

@@ -23,7 +23,6 @@ export default class FightersController {
 
   async getAll(req, res, next) {
     try {
-      //only gets boards by user who is logged in
       let fighters = await _fightersService.find({})
       res.send(fighters)
     }
@@ -60,7 +59,7 @@ export default class FightersController {
 
   async delete(req, res, next) {
     try {
-      let fighter = await _fightersService.findOneAndRemove({ _id: req.params.id, authorId: req.session.uid })
+      let fighter = await _fightersService.findOneAndRemove({ _id: req.params.id })
       return res.send("Successfully deleted")
     } catch (error) { next(error) }
   }

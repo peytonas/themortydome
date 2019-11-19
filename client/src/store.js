@@ -37,17 +37,36 @@ export default new Vuex.Store({
     },
     setFighters(state, fighter) {
       state.fighter = fighter
+    },
+    setActiveEnemy(state, activeEnemy) {
+      state.activeEnemy = activeEnemy
+    },
+    setActivePlayer(state, activePlayer) {
+      state.activePlayer = activePlayer
     }
   },
   actions: {
-    addFighter({ commit, dispatch }, fighterData) {
-      api.post('fighters', fighterData)
-        .then(serverBoard => {
-          dispatch('getFighters')
+    async getEnemy({ commit, dispatch }, fighterId) {
+      api.get(`fighters/${fighterId}`)
+        .then(res => {
+          commit('setActiveEnemy', res.data)
         })
     },
+    async getPlayer({ commit, dispatch }, fighterId) {
+      api.get(`fighters/${fighterId}`)
+        .then(res => {
+          commit('setActivePlayer', res.data)
+        })
+    },
+    async addFighter({ commit, dispatch }, fighterData) {
+      try {
+        let res = await api.post('fighters', fighterData)
+        dispatch('getFighters')
+      } catch (error) {
+        console.error(error)
+      }
+    },
 
-    //#region -- AUTH STUFF --
     async register({
       commit,
       dispatch

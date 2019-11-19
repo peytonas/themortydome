@@ -86,6 +86,7 @@ export default {
     return {
       newFighter: {
         name: "",
+        number: "",
         imgUrl: "",
         description: "",
         health: 100,
@@ -101,6 +102,7 @@ export default {
       this.$store.dispatch("addFighter", this.newFighter);
       this.newFighter = {
         name: "",
+        number: "",
         imgUrl: "",
         description: "",
         health: 100,
