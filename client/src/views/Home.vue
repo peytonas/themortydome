@@ -7,7 +7,7 @@
       </button>
     </div>
     <div class="col-1 mt-2 text-center">
-      <button class="nes-btn is-error text-white" @click="goCreate()">
+      <button class="nes-btn is-error text-white" @click="goCreate()" disabled>
         <h6>&pi;</h6>
       </button>
     </div>

@@ -87,6 +87,7 @@ export default {
       newFighter: {
         name: "",
         number: "",
+        type: "",
         imgUrl: "",
         description: "",
         health: 100,
