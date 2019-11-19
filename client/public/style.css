@@ -3,10 +3,27 @@
 } */
 .bg {
   background-image: url("https://www.pinclipart.com/picdir/big/149-1496181_rick-and-morty-portal-png-banner-transparent-portal.png");
-  /* background-position: center; */
   background-repeat: no-repeat;
   background-size: auto;
   background-position: center;
+}
+
+.garage {
+  background-image: url("https://external-preview.redd.it/uo0b1tRtOeFEqG7UaBwJ3S3bD6k8IyI8pFOpdN7ZNEo.png?auto=webp&s=82eb73f662e197f6e3ca1304838a4c7c81adc536");
+  background-repeat: no-repeat;
+  background-size: auto;
+  background-position: center;
+}
+
+.bg-login {
+  background-image: url("https://img3.goodfon.com/wallpaper/nbig/1/d3/portal-rick-and-morty-fantastika-rik-i-morti.jpg");
+  background-repeat: no-repeat;
+  background-size: auto;
+  background-position: center;
+}
+
+.top-bg {
+  background-color: #8cc93c;
 }
 
 .logo {
@@ -21,7 +38,7 @@
   width: auto;
 }
 .min-height {
-  height: 690px;
+  height: 688px;
 }
 
 ::-webkit-scrollbar {

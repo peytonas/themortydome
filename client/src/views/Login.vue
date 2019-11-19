@@ -65,10 +65,4 @@ export default {
   font-family: "Press Start 2p";
   font-size: 10px;
 }
-.bg-login {
-  background-image: url("https://art.ngfiles.com/images/389000/389848_mikeagar85_rick-and-morty-02-duel-monitor-wallpaper.jpg?f1448441179");
-  background-repeat: no-repeat;
-  background-size: auto;
-  background-position: center;
-}
 </style>

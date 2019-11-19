@@ -20,15 +20,11 @@ let api = Axios.create({
   withCredentials: true
 })
 
-let playerHealthElement = document.getElementById("playerHealth")
-let playerHealthBarElement = document.getElementById("playerHealthBar")
-let playerHitElement = document.getElementById("playerHits")
-let enemyHealthElement = document.getElementById("enemyHealth")
-let enemyHealthBarElement = document.getElementById("enemyHealthBar")
-let enemyHitElement = document.getElementById("enemyHits")
-
 export default new Vuex.Store({
   state: {
+    fighter: [],
+    activeEnemy: {},
+    activePlayer: {},
     user: {},
   },
   mutations: {
@@ -39,37 +35,18 @@ export default new Vuex.Store({
     setUser(state, user) {
       state.user = user
     },
+    setFighters(state, fighter) {
+      state.fighter = fighter
+    }
   },
   actions: {
-    async zap(player) {
-      if (player.health > 0) {
-        player.health -= enemy.attacks.zap
-        // @ts-ignore
-        playerHealthBarElement.value -= enemy.attacks.zap;
-      }
-      player.hits++
-      update();
+    addFighter({ commit, dispatch }, fighterData) {
+      api.post('fighters', fighterData)
+        .then(serverBoard => {
+          dispatch('getFighters')
+        })
     },
-    async reset() {
-      player.health = 100;
-      // @ts-ignore
-      playerHealthBarElement.value = 100;
-      player.attacks.cry = 5
-      player.attacks.scream = 1
-      enemy.attacks.zap = 5
-      player.hits = 0;
-      enemy.health = 100;
-      // @ts-ignore
-      enemyHealthBarElement.value = 100;
-      enemy.hits = 0;
-      update();
-    },
-    async update() {
-      playerHealthElement.textContent = "HEALTH: " + player.health.toString()
-      playerHitElement.textContent = "HITS: " + player.hits.toString()
-      enemyHealthElement.textContent = "HEALTH: " + enemy.health.toString()
-      enemyHitElement.textContent = "HITS: " + enemy.hits.toString()
-    },
+
     //#region -- AUTH STUFF --
     async register({
       commit,

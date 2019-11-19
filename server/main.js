@@ -36,8 +36,8 @@ server.use('/account', new AuthController().router)
 
 
 //YOUR ROUTES HERE!!!!!!
-import BoardController from './controllers/BoardController'
-server.use('/api/boards', new BoardController().router)
+import FightersController from './controllers/FightersController'
+server.use('/api/fighters', new FightersController().router)
 
 
 
