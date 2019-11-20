@@ -37,13 +37,18 @@
             <form @submit.prevent="addFighter">
               <div class="form-group">
                 <label>name</label>
-                <input class="form-control" placeholder="Morty" v-model="newFighter.name" required />
+                <input
+                  class="form-control"
+                  placeholder="input name..."
+                  v-model="newFighter.name"
+                  required
+                />
               </div>
               <div class="form-group">
                 <label>image</label>
                 <input
                   class="form-control"
-                  placeholder="url..."
+                  placeholder="input url..."
                   v-model="newFighter.imgUrl"
                   required
                 />
@@ -52,18 +57,28 @@
                 <label>description</label>
                 <input
                   class="form-control"
-                  placeholder="description..."
+                  placeholder="input description..."
                   v-model="newFighter.description"
                   required
                 />
               </div>
               <div class="form-group">
-                <label>health</label>
-                <input class="form-control" placeholder="100" v-model="newFighter.health" required />
+                <label>hp</label>
+                <input
+                  class="form-control"
+                  placeholder="input hp..."
+                  v-model="newFighter.hp"
+                  required
+                />
               </div>
               <div class="form-group">
-                <label>hits</label>
-                <input class="form-control" placeholder="0" v-model="newFighter.hits" required />
+                <label>type</label>
+                <input
+                  class="form-control"
+                  placeholder="input type..."
+                  v-model="newFighter.type"
+                  required
+                />
               </div>
             </form>
           </div>

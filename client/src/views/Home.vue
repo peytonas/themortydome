@@ -27,7 +27,7 @@
             v-for="fighter in this.$store.state.fighters"
             :fighterProp="fighter.name"
             :key="fighter._id"
-          >{{fighter.name}}</option>
+          >{{fighter.number}}. {{fighter.name}}</option>
         </select>
       </div>
       <div class="text-center">
@@ -96,7 +96,16 @@ export default {
   data() {
     return {};
   },
-  computed: {},
+  computed: {
+    fighter() {
+      debugger;
+      let fighters = this.$store.state.fighters;
+      fighters.sort(function(a, b) {
+        return a - b;
+      });
+      // return this.$store.state.fighters;
+    }
+  },
   components: { Enemy, Player, Item }
 };
 </script>
