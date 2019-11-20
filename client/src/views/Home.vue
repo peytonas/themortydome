@@ -7,7 +7,7 @@
       </button>
     </div>
     <div class="col-1 mt-2 text-center">
-      <button class="nes-btn is-error text-white" @click="goCreate()" disabled>
+      <button class="nes-btn is-error text-white" @click="goCreate()">
         <h6>&pi;</h6>
       </button>
     </div>
@@ -19,7 +19,7 @@
     </div>
   </div>
   <div class="row justify-content-between">
-    <div class="col-4">
+    <div class="col-4 ml-2">
       <div class="nes-select is-success">
         <select required id="success_select">
           <option value disabled selected hidden>pick-a-morty...</option>
@@ -58,7 +58,8 @@ export default {
   methods: {
     //NOTE will make chosen Morty the "activePlayer" and render via PlayerComponent .
     selectMorty() {
-      this.$store.state.getPlayer();
+      this.$store.dispatch("getPlayer");
+      console.log(this.$store.state.activePlayer);
     },
     logout() {
       // @ts-ignore

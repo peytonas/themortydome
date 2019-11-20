@@ -5,6 +5,7 @@ import Axios from 'axios'
 import router from './router'
 import AuthService from './AuthService'
 import { defaultCoreCipherList } from 'constants'
+import { STATES } from 'mongoose'
 //import { getMaxListeners } from 'cluster'
 //import { addListener } from 'cluster'
 
@@ -56,16 +57,19 @@ export default new Vuex.Store({
       }
     },
     async getEnemy({ commit, dispatch }, fighterId) {
-      api.get(`fighters/${fighterId}`)
+      api.get(`/fighters/${fighterId}`)
         .then(res => {
           commit('setActiveEnemy', res.data)
         })
     },
-    async getPlayer({ commit, dispatch }, fighterId) {
-      api.get(`fighters/${fighterId}`)
-        .then(res => {
-          commit('setActivePlayer', res.data)
-        })
+    async getPlayer({ commit, dispatch, state }, fighterId) {
+      try {
+        let player = await api.get(`/fighters/${fighterId}`)
+        commit('setActivePlayer', player.data)
+        return state.activePlayer
+      } catch (error) {
+        console.error(error)
+      }
     },
     async addFighter({ commit, dispatch }, fighterData) {
       try {

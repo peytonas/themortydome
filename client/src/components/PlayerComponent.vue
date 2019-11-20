@@ -32,9 +32,6 @@ export default {
     fighters() {
       return this.$store.state.activePlayer;
     }
-  },
-  mounted() {
-    this.$store.dispatch("getAll"); //NOTE will be used for dropdown to show available Mortys
   }
 };
 </script>

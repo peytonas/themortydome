@@ -1,10 +1,11 @@
 /* * {
   border: 1px solid red;
 } */
+
 .bg {
-  background-image: url("https://www.pinclipart.com/picdir/big/149-1496181_rick-and-morty-portal-png-banner-transparent-portal.png");
+  background: url("https://i.pinimg.com/originals/98/29/21/9829215db6f9210c0ae4e318e854cb1f.png");
   background-repeat: no-repeat;
-  background-size: auto;
+  background-size: 70% 100%;
   background-position: center;
 }
 
@@ -15,15 +16,15 @@
   background-position: center;
 }
 
+.container-fluid {
+  padding: 0px;
+}
+
 .bg-login {
   background-image: url("https://img3.goodfon.com/wallpaper/nbig/1/d3/portal-rick-and-morty-fantastika-rik-i-morti.jpg");
   background-repeat: no-repeat;
   background-size: auto;
   background-position: center;
-}
-
-.top-bg {
-  background-color: #8cc93c;
 }
 
 .logo {

@@ -2,7 +2,7 @@
 <body class="container-fluid garage min-height">
   <div class="row justify-content-between">
     <div class="col-1 mt-2 text-white">
-      <button class="nes-btn is-error text-white" @click="goHome()">
+      <button class="nes-btn is-error text-white ml-2" @click="goHome()">
         <i class="nes-icon close is-small"></i>
       </button>
     </div>
