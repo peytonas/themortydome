@@ -1,9 +1,9 @@
 <template>
   <div class="col-4 text-center" id="enemy">
     <p>{{fighterProp.name}}</p>
-    <img :src="fighterProp.img" alt="vm" />
+    <img :src="fighterProp.img" alt />
     <div class="row justify-content-center mr-1">
-      <h6 id="enemyHealth">HEALTH: {{fighterProp.health}}</h6>
+      <h6 id="enemyHealth">HP: {{fighterProp.hp}}</h6>
       <progress id="enemyHealthBar" class="nes-progress is-error" value="100" max="100"></progress>
     </div>
     <div class="row justify-content-center">

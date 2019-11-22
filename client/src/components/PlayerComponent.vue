@@ -1,12 +1,13 @@
 <template>
   <div class="col-4 text-center" id="player">
-    <img class="img" src="https://pocketmortys.net/images/assets/MortyDefaultDown_1.png" alt="001" />
+    <p>{{fighterProp.name}}</p>
+    <img :src="fighterProp.img" alt />
     <div class="row justify-content-center ml-1">
-      <h5 id="playerHealth">HEALTH: 100</h5>
+      <h5 id="playerHealth">HP: {{fighterProp.hp}}</h5>
       <progress id="playerHealthBar" class="nes-progress is-error" value="100" max="100"></progress>
     </div>
     <div class="row justify-content-center">
-      <h6 id="playerHits">HITS: 0</h6>
+      <h6 id="playerHits">HITS: {{fighterProp.hits}}</h6>
     </div>
     <div class="row justify-content-center mb-2">
       <div class="col-4 text-center">

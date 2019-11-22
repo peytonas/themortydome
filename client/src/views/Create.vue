@@ -8,27 +8,27 @@
     </div>
   </div>
   <div class="row justify-content-center">
-    <h1 class="card col-5">MAKE-A-MORTY</h1>
+    <h1 class="card col-5 text-center">MAKE-A-MORTY</h1>
   </div>
   <div class="row justify-content-center">
     <button
       type="button"
       class="nes-btn is-success"
       data-toggle="modal"
-      data-target="#exampleModal"
+      data-target="#createModal"
     >NEW MORTY</button>
     <div
       class="modal fade"
-      id="exampleModal"
+      id="createModal"
       tabindex="-1"
       role="dialog"
-      aria-labelledby="exampleModalLabel"
+      aria-labelledby="ModalLabel"
       aria-hidden="true"
     >
       <div class="modal-dialog text-center" role="document">
         <div class="modal-content">
           <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalLabel">MAKE-A-MORTY</h5>
+            <h5 class="modal-title" id="ModalLabel">MAKE-A-MORTY</h5>
             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
               <span aria-hidden="true">&times;</span>
             </button>

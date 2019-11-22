@@ -1,5 +1,5 @@
 <template>
-<body class="bg min-height">
+<body class="home bg min-height">
   <div class="row justify-content-between">
     <div class="col-1 mt-2 text-center">
       <button class="nes-btn is-error text-white" @click="logout()">
@@ -22,7 +22,7 @@
     <div class="col-4 ml-2">
       <div class="nes-select is-success">
         <select required id="success_select">
-          <option value disabled selected hidden>pick-a-morty...</option>
+          <option value disabled selected hidden>PICK-A-MORTY...</option>
           <option
             v-for="fighter in this.$store.state.fighters"
             :fighterProp="fighter.name"
@@ -33,12 +33,14 @@
       <div class="text-center">
         <button class="nes-btn is-success mt-2" @click="selectMorty()">select</button>
       </div>
+      <div id="player"></div>
+      <div id="enemy"></div>
     </div>
   </div>
   <div class="row justify-content-left"></div>
   <div class="row justify-content-center pt-2 mb-2">
     <div class="col-4 text-center">
-      <button class="nes-btn is-primary" onclick="reset()">reset</button>
+      <button class="nes-btn is-primary" @click="reset()">reset</button>
     </div>
   </div>
 </body>
@@ -50,16 +52,18 @@ import Enemy from "../components/EnemyComponent";
 import Player from "../components/PlayerComponent";
 import Item from "../components/ItemComponent";
 
+// document.getElementById("player").innerHTML = Player;
+// document.getElementById("enemy").innerHTML = Enemy;
+
 export default {
   name: "home",
   mounted() {
     this.$store.dispatch("getFighters");
   },
   methods: {
-    //NOTE will make chosen Morty the "activePlayer" and render via PlayerComponent .
+    //NOTE should make chosen Morty the "activePlayer" and render via PlayerComponent .
     selectMorty() {
       this.$store.dispatch("getPlayer");
-      console.log(this.$store.state.activePlayer);
     },
     logout() {
       // @ts-ignore
@@ -72,7 +76,7 @@ export default {
       });
       // @ts-ignore
       Swal.fire({
-        title: "Are you sure?",
+        title: "log out?",
         icon: "warning",
         showCancelButton: true,
         confirmButtonColor: "#92cc40",
