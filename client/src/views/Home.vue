@@ -1,5 +1,5 @@
 <template>
-<body class="home bg min-height">
+<body class="home bg min-height container-fluid">
   <div class="row justify-content-between">
     <div class="col-1 mt-2 text-center">
       <button class="nes-btn is-error text-white" @click="logout()">
@@ -23,18 +23,26 @@
       <div class="nes-select is-success">
         <select required id="success_select">
           <option value disabled selected hidden>PICK-A-MORTY...</option>
+          <!-- <div v-if="this.$store.state.activePlayer == {}"> -->
           <option
             v-for="fighter in this.$store.state.fighters"
             :fighterProp="fighter.name"
             :key="fighter._id"
           >{{fighter.number}}. {{fighter.name}}</option>
+          <!-- </div> -->
         </select>
       </div>
       <div class="text-center">
-        <button class="nes-btn is-success mt-2" @click="selectMorty()">select</button>
+        <button class="nes-btn is-success mt-2" @click="selectMorty(fighter._id)">select</button>
       </div>
-      <div id="player"></div>
-      <div id="enemy"></div>
+    </div>
+  </div>
+  <div class="row justify-content-between text-center">
+    <div class="col-5">
+      <Player />
+    </div>
+    <div class="col-5">
+      <Enemy />
     </div>
   </div>
   <div class="row justify-content-left"></div>
@@ -58,13 +66,15 @@ import Item from "../components/ItemComponent";
 export default {
   name: "home",
   mounted() {
-    this.$store.dispatch("getFighters");
+    getFighters();
+    this.$store.dispatch("getEnemy");
+    this.$store.dispatch("getPlayer");
   },
   methods: {
     //NOTE should make chosen Morty the "activePlayer" and render via PlayerComponent .
-    selectMorty() {
-      this.$store.dispatch("getPlayer");
-    },
+    // selectMorty() {
+    //   this.$store.dispatch("getPlayer", this.$store.state.fighters[i]._id);
+    // },
     logout() {
       // @ts-ignore
       const toast = Swal.mixin({
@@ -93,6 +103,9 @@ export default {
         }
       });
     },
+    getFighters() {
+      this.$store.dispatch("getFighters");
+    },
     goCreate() {
       this.$router.push("/create");
     }
@@ -102,11 +115,7 @@ export default {
   },
   computed: {
     fighter() {
-      debugger;
       let fighters = this.$store.state.fighters;
-      fighters.sort(function(a, b) {
-        return a - b;
-      });
       // return this.$store.state.fighters;
     }
   },

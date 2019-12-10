@@ -45,6 +45,24 @@
                 />
               </div>
               <div class="form-group">
+                <label>number</label>
+                <input
+                  class="form-control"
+                  placeholder="input number..."
+                  v-model="newFighter.number"
+                  required
+                />
+              </div>
+              <div class="form-group">
+                <label>type</label>
+                <input
+                  class="form-control"
+                  placeholder="input type..."
+                  v-model="newFighter.type"
+                  required
+                />
+              </div>
+              <div class="form-group">
                 <label>image</label>
                 <input
                   class="form-control"
@@ -68,15 +86,6 @@
                   class="form-control"
                   placeholder="input hp..."
                   v-model="newFighter.hp"
-                  required
-                />
-              </div>
-              <div class="form-group">
-                <label>type</label>
-                <input
-                  class="form-control"
-                  placeholder="input type..."
-                  v-model="newFighter.type"
                   required
                 />
               </div>
@@ -119,10 +128,10 @@ export default {
       this.newFighter = {
         name: "",
         number: "",
+        type: "",
         imgUrl: "",
         description: "",
-        health: 100,
-        hits: 0
+        hp: 100
       };
     }
   }

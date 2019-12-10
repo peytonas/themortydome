@@ -53,19 +53,16 @@ export default new Vuex.Store({
       }
     },
     async getEnemy({ commit, dispatch }, fighterId) {
-      api.get(`/fighters/${fighterId}`)
+      api.get(`/fighters/5dd58155df9bfd05e31f7bb6`)
         .then(res => {
           commit('setActiveEnemy', res.data)
         })
     },
-    async getPlayer({ commit, dispatch, state }, fighterId) {
-      try {
-        let player = await api.get(`/fighters/${fighterId}`)
-        commit('setActivePlayer', player.data)
-        return state.activePlayer
-      } catch (error) {
-        console.error(error)
-      }
+    async getPlayer({ commit, dispatch }, fighterId) {
+      api.get(`/fighters/5dd58281df9bfd05e31f7bb9`)
+        .then(res => {
+          commit('setActivePlayer', res.data)
+        })
     },
     async addFighter({ commit, dispatch }, fighterData) {
       try {
