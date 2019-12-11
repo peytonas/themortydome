@@ -18,7 +18,7 @@
       <h1 class="nes-text is-primary">THE MORTYDOME</h1>
     </div>
   </div>
-  <div class="row justify-content-between">
+  <div class="row justify-content-center">
     <div class="col-4 ml-2">
       <div class="nes-select is-success">
         <select required id="success_select">
@@ -33,7 +33,7 @@
         </select>
       </div>
       <div class="text-center">
-        <button class="nes-btn is-success mt-2" @click="selectMorty(fighter._id)">select</button>
+        <button class="nes-btn is-success mt-2" @click.prevent="selectMorty(fighter._id)">select</button>
       </div>
     </div>
   </div>
@@ -60,21 +60,18 @@ import Enemy from "../components/EnemyComponent";
 import Player from "../components/PlayerComponent";
 import Item from "../components/ItemComponent";
 
-// document.getElementById("player").innerHTML = Player;
-// document.getElementById("enemy").innerHTML = Enemy;
-
 export default {
   name: "home",
   mounted() {
-    getFighters();
+    this.getFighters();
     this.$store.dispatch("getEnemy");
-    this.$store.dispatch("getPlayer");
   },
   methods: {
     //NOTE should make chosen Morty the "activePlayer" and render via PlayerComponent .
-    // selectMorty() {
-    //   this.$store.dispatch("getPlayer", this.$store.state.fighters[i]._id);
-    // },
+    selectMorty() {
+      let fighterId = fighter._id;
+      this.$store.dispatch("getPlayer", fighterId);
+    },
     logout() {
       // @ts-ignore
       const toast = Swal.mixin({
@@ -114,9 +111,8 @@ export default {
     return {};
   },
   computed: {
-    fighter() {
-      let fighters = this.$store.state.fighters;
-      // return this.$store.state.fighters;
+    activePlayer() {
+      return this.$store.state.activePlayer;
     }
   },
   components: { Enemy, Player, Item }

@@ -1,4 +1,5 @@
 import mongoose from "mongoose"
+import { stringify } from "querystring"
 const Schema = mongoose.Schema
 const ObjectId = Schema.Types.ObjectId
 
@@ -10,7 +11,12 @@ let _schema = new Schema({
   description: { type: String, maxlength: 500 },
   hp: { type: Number },
   hits: { type: Number, default: 0 },
-  attacks: {},
+  attacks: [{
+    name: { type: String, required: true },
+    AD: { type: Number, required: true },
+    effect: { type: String, required: false },
+    AP: { type: Number, required: false }
+  }],
   items: [],
   authorId: { type: ObjectId, ref: 'User', required: true },
   beaten: { type: Boolean, default: false, required: true, },

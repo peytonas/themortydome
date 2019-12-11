@@ -53,13 +53,13 @@ export default new Vuex.Store({
       }
     },
     async getEnemy({ commit, dispatch }, fighterId) {
-      api.get(`/fighters/5dd58155df9bfd05e31f7bb6`)
+      api.get(`/fighters/5df01fa5c260cd61e53e8e2f`)
         .then(res => {
           commit('setActiveEnemy', res.data)
         })
     },
     async getPlayer({ commit, dispatch }, fighterId) {
-      api.get(`/fighters/5dd58281df9bfd05e31f7bb9`)
+      api.get(`/fighters/${fighterId}`)
         .then(res => {
           commit('setActivePlayer', res.data)
         })
