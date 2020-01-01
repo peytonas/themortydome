@@ -2,6 +2,10 @@
   border: 1px solid red;
 } */
 
+.card {
+  border: 2px solid white;
+}
+
 .bg {
   background: url("https://i.pinimg.com/originals/98/29/21/9829215db6f9210c0ae4e318e854cb1f.png");
   background-repeat: no-repeat;
@@ -29,7 +33,7 @@
 }
 
 .overflow {
-  height: 408px;
+  height: 390px;
   overflow: scroll;
 }
 
