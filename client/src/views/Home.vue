@@ -19,7 +19,7 @@
     </div>
   </div>
   <div class="row justify-content-center">
-    <form class="col-4 ml-2">
+    <form @submit.prevent="selectMorty" class="col-4 ml-2">
       <div class="nes-select is-success">
         <select required id="success_select">
           <option value disabled selected hidden>PICK-A-MORTY...</option>
@@ -33,11 +33,7 @@
         </select>
       </div>
       <div class="text-center">
-        <button
-          type="submit"
-          class="nes-btn is-success mt-2"
-          @click.prevent="selectMorty(fighter)"
-        >select</button>
+        <button type="submit" class="nes-btn is-success mt-2">select</button>
       </div>
     </form>
   </div>
@@ -69,13 +65,12 @@ export default {
   mounted() {
     this.getFighters();
     this.$store.dispatch("getEnemy");
+    this.$store.dispatch("getPlayer");
   },
   methods: {
     //NOTE should make chosen Morty the "activePlayer" and render via PlayerComponent .
-    selectMorty(fighter) {
-      debugger;
-      let fighterId = fighter;
-      this.$store.dispatch("getPlayer", fighterId);
+    selectMorty() {
+      this.$store.dispatch("getPlayer", fighter);
     },
     logout() {
       // @ts-ignore

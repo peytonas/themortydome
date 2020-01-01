@@ -59,7 +59,7 @@ export default new Vuex.Store({
         })
     },
     async getPlayer({ commit, dispatch }, fighterId) {
-      api.get(`/fighters/${fighterId}`)
+      api.get(`/fighters/5e0bdfd3366ab17ab0ae7db9`)
         .then(res => {
           commit('setActivePlayer', res.data)
         })

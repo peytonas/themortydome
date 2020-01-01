@@ -99,6 +99,17 @@
       </div>
     </div>
   </div>
+  <div class="row justify-content-center">
+    <div
+      class="col-2 card bg-dark text-center text-white mt-2 ml-1 mr-1"
+      v-for="fighter in this.$store.state.fighters"
+      :fighterProp="fighter.name"
+      :key="fighter._id"
+    >
+      <img :src="fighter.imgUrl" alt />
+      {{fighter.number}}. {{fighter.name}}
+    </div>
+  </div>
 </body>
 </template>
 

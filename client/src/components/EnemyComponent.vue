@@ -9,7 +9,7 @@
     <div class="row justify-content-center">
       <h6 id="enemyHits">HITS: {{activeEnemy.hits}}</h6>
     </div>
-    <div class="row justify-content-center"></div>
+    <!-- <div class="row justify-content-center"></div> -->
   </div>
 </template>
 <script>

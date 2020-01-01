@@ -5,19 +5,15 @@
 .bg {
   background: url("https://i.pinimg.com/originals/98/29/21/9829215db6f9210c0ae4e318e854cb1f.png");
   background-repeat: no-repeat;
-  background-size: 70% 100%;
+  background-size: cover;
   background-position: center;
 }
 
 .garage {
   background-image: url("https://external-preview.redd.it/uo0b1tRtOeFEqG7UaBwJ3S3bD6k8IyI8pFOpdN7ZNEo.png?auto=webp&s=82eb73f662e197f6e3ca1304838a4c7c81adc536");
   background-repeat: no-repeat;
-  background-size: auto;
+  background-size: 100%;
   background-position: center;
-}
-
-.container-fluid {
-  padding: 0px;
 }
 
 .bg-login {
