@@ -99,7 +99,7 @@
       </div>
     </div>
   </div>
-  <div class="row justify-content-center">
+  <div class="row justify-content-center overflow">
     <div
       class="col-2 card bg-dark text-center text-white mt-2 ml-1 mr-1"
       v-for="fighter in this.$store.state.fighters"
