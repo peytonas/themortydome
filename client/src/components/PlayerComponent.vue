@@ -9,16 +9,22 @@
     <div class="row justify-content-center">
       <h6 id="playerHits">HITS: {{activePlayer.hits}}</h6>
     </div>
-    <!-- <div class="row justify-content-center mb-2"> -->
-    <!-- <div class="col-4 text-center">
-        <button
-          class="nes-btn is-warning"
-          v-for="attack in activePlayer.attacks"
-          :fighterProp="activePlayer.attacks"
-          :key="attack"
-        >{{activePlayer.attacks.name}}</button>
-    </div>-->
-    <!-- </div> -->
+    <div class="row justify-content-center">
+      <div class="col-5 text-center mb-2">
+        <button class="nes-btn is-warning small">{{activePlayer.attacks[0].name}}</button>
+      </div>
+      <div class="col-5 text-center mb-2">
+        <button class="nes-btn is-warning small">{{activePlayer.attacks[1].name}}</button>
+      </div>
+    </div>
+    <div class="row justify-content-center">
+      <div class="col-5 text-center mb-2">
+        <button class="nes-btn is-warning small">{{activePlayer.attacks[2].name}}</button>
+      </div>
+      <div class="col-5 text-center mb-2">
+        <button class="nes-btn is-warning small">{{activePlayer.attacks[3].name}}</button>
+      </div>
+    </div>
   </div>
 </template>
 <script>

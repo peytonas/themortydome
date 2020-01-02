@@ -37,19 +37,21 @@
     </form>
   </div>
   <div class="row justify-content-between text-center">
-    <div class="col-5">
+    <div class="col-4">
       <Player />
     </div>
-    <div class="col-5">
+    <div class="col-2 text-center align-self-end">
+      <button class="nes-btn is-primary" @click="reset()">reset</button>
+    </div>
+    <div class="col-4">
       <Enemy />
     </div>
   </div>
-  <div class="row justify-content-left"></div>
-  <div class="row justify-content-center pt-2 mb-2">
+  <!-- <div class="row justify-content-center pt-2 mb-2">
     <div class="col-4 text-center">
-      <button class="nes-btn is-primary" @click="reset()">reset</button>
+      
     </div>
-  </div>
+  </div>-->
 </body>
 </template>
 
@@ -64,12 +66,11 @@ export default {
   mounted() {
     this.getFighters();
     this.$store.dispatch("getEnemy");
-    // this.$store.dispatch("getPlayer");
+    this.$store.dispatch("getPlayer");
   },
   methods: {
     //NOTE should make chosen Morty the "activePlayer" and render via PlayerComponent .
     selectMorty(fighter) {
-      debugger;
       this.$store.dispatch("getPlayer", fighter._id);
       console.log(this.$store.state.activePlayer.name);
     },
