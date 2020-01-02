@@ -19,21 +19,20 @@
     </div>
   </div>
   <div class="row justify-content-center">
-    <form @submit.prevent="selectMorty" class="col-4 ml-2">
+    <form @submit.prevent="selectMorty()" class="col-4 ml-2">
       <div class="nes-select is-success">
-        <select required id="success_select">
+        <select name="fighters" required>
           <option value disabled selected hidden>PICK-A-MORTY...</option>
-          <!-- <div v-if="this.$store.state.activePlayer == {}"> -->
           <option
+            value="fighter"
             v-for="fighter in this.$store.state.fighters"
             :fighterProp="fighter.name"
             :key="fighter._id"
           >{{fighter.number}}. {{fighter.name}}</option>
-          <!-- </div> -->
         </select>
       </div>
       <div class="text-center">
-        <button type="submit" class="nes-btn is-success mt-2">select</button>
+        <button type="submit" value="submit" class="nes-btn is-success mt-2">select</button>
       </div>
     </form>
   </div>
@@ -65,12 +64,14 @@ export default {
   mounted() {
     this.getFighters();
     this.$store.dispatch("getEnemy");
-    this.$store.dispatch("getPlayer");
+    // this.$store.dispatch("getPlayer");
   },
   methods: {
     //NOTE should make chosen Morty the "activePlayer" and render via PlayerComponent .
-    selectMorty() {
-      this.$store.dispatch("getPlayer", fighter);
+    selectMorty(fighter) {
+      debugger;
+      this.$store.dispatch("getPlayer", fighter._id);
+      console.log(this.$store.state.activePlayer.name);
     },
     logout() {
       // @ts-ignore

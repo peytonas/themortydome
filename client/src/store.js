@@ -58,8 +58,9 @@ export default new Vuex.Store({
           commit('setActiveEnemy', res.data)
         })
     },
-    async getPlayer({ commit, dispatch }, fighterId) {
-      api.get(`/fighters/5e0bdfd3366ab17ab0ae7db9`)
+    async getPlayer({ commit, dispatch }, fighter) {
+      debugger
+      api.get(`/fighters/${fighter._id}`)
         .then(res => {
           commit('setActivePlayer', res.data)
         })
