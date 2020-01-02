@@ -72,7 +72,6 @@ export default new Vuex.Store({
         console.error(error)
       }
     },
-
     async register({
       commit,
       dispatch

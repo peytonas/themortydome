@@ -1,5 +1,5 @@
 <template>
-<body class="home bg min-height container-fluid">
+<body class="home bg container-fluid">
   <div class="row justify-content-between">
     <div class="col-1 mt-2 text-center">
       <button class="nes-btn is-error text-white" @click="logout()">
@@ -115,8 +115,12 @@ export default {
 };
 </script>
 <style scoped>
-.font {
-  font-family: "Press Start 2p";
-  font-size: 10px;
+.bg {
+  background-image: url("https://i.pinimg.com/originals/98/29/21/9829215db6f9210c0ae4e318e854cb1f.png");
+  height: 688px;
+  background-attachment: fixed;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
 }
 </style>

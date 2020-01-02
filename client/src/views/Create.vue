@@ -1,5 +1,5 @@
 <template>
-<body class="container-fluid garage min-height">
+<body class="container-fluid bg">
   <div class="row justify-content-between">
     <div class="col-1 mt-2 text-white">
       <button class="nes-btn is-error text-white ml-2" @click="goHome()">
@@ -8,106 +8,19 @@
     </div>
   </div>
   <div class="row justify-content-center">
-    <h1 class="card col-5 text-center">MAKE-A-MORTY</h1>
-  </div>
-  <div class="row justify-content-center">
-    <button
-      type="button"
-      class="nes-btn is-success"
-      data-toggle="modal"
-      data-target="#createModal"
-    >NEW MORTY</button>
-    <div
-      class="modal fade"
-      id="createModal"
-      tabindex="-1"
-      role="dialog"
-      aria-labelledby="ModalLabel"
-      aria-hidden="true"
-    >
-      <div class="modal-dialog text-center" role="document">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title" id="ModalLabel">MAKE-A-MORTY</h5>
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-              <span aria-hidden="true">&times;</span>
-            </button>
-          </div>
-          <div class="modal-body">
-            <form @submit.prevent="addFighter">
-              <div class="form-group">
-                <label>name</label>
-                <input
-                  class="form-control"
-                  placeholder="input name..."
-                  v-model="newFighter.name"
-                  required
-                />
-              </div>
-              <div class="form-group">
-                <label>number</label>
-                <input
-                  class="form-control"
-                  placeholder="input number..."
-                  v-model="newFighter.number"
-                  required
-                />
-              </div>
-              <div class="form-group">
-                <label>type</label>
-                <input
-                  class="form-control"
-                  placeholder="input type..."
-                  v-model="newFighter.type"
-                  required
-                />
-              </div>
-              <div class="form-group">
-                <label>image</label>
-                <input
-                  class="form-control"
-                  placeholder="input url..."
-                  v-model="newFighter.imgUrl"
-                  required
-                />
-              </div>
-              <div class="form-group">
-                <label>description</label>
-                <input
-                  class="form-control"
-                  placeholder="input description..."
-                  v-model="newFighter.description"
-                  required
-                />
-              </div>
-              <div class="form-group">
-                <label>hp</label>
-                <input
-                  class="form-control"
-                  placeholder="input hp..."
-                  v-model="newFighter.hp"
-                  required
-                />
-              </div>
-            </form>
-          </div>
-          <div class="modal-footer">
-            <button type="button" class="nes-btn is-primary" data-dismiss="modal">close</button>
-            <button type="button" class="nes-btn is-primary" @click="addFighter()">create Morty</button>
-          </div>
-        </div>
-      </div>
-    </div>
+    <h1 class="card col-5 bg-dark text-white text-center pt-1">MAKE-A-MORTY</h1>
   </div>
   <div class="row justify-content-center overflow">
     <div
-      class="col-2 card bg-dark text-center text-white mt-2 ml-1 mr-1"
+      class="col-3 card bg-dark card-text text-center text-white mt-2 ml-1 mr-1"
       v-for="fighter in this.$store.state.fighters"
       :fighterProp="fighter.name"
       :key="fighter._id"
     >
-      <img :src="fighter.imgUrl" alt />
+      <img class="card-img" :src="fighter.imgUrl" alt />
       {{fighter.number}}. {{fighter.name}}
+      <br />
+      <div class="small mb-1">{{fighter.description}}</div>
     </div>
   </div>
 </body>
@@ -148,5 +61,13 @@ export default {
   }
 };
 </script>
-<style>
+<style scoped>
+.bg {
+  background-image: url("https://external-preview.redd.it/uo0b1tRtOeFEqG7UaBwJ3S3bD6k8IyI8pFOpdN7ZNEo.png?auto=webp&s=82eb73f662e197f6e3ca1304838a4c7c81adc536");
+  height: 688px;
+  background-attachment: fixed;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+}
 </style>

@@ -1,5 +1,5 @@
 <template>
-<body class="container-fluid bg-login min-height">
+<body class="container-fluid bg">
   <div class="row justify-content-center">
     <div class="col-5 font mt-1">
       <form v-if="loginForm" @submit.prevent="loginUser">
@@ -60,9 +60,13 @@ export default {
 };
 </script>
 
-<style>
-.font {
-  font-family: "Press Start 2p";
-  font-size: 10px;
+<style scoped>
+.bg {
+  background-image: url("https://img3.goodfon.com/wallpaper/nbig/1/d3/portal-rick-and-morty-fantastika-rik-i-morti.jpg");
+  height: 688px;
+  background-attachment: fixed;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
 }
 </style>
