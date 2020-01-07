@@ -28,7 +28,6 @@ export default new Vuex.Store({
     resetState(state, user) {
       state.user = {}
     },
-
     setUser(state, user) {
       state.user = user
     },
@@ -112,6 +111,5 @@ export default new Vuex.Store({
         console.warn(e.message)
       }
     },
-
   }
 })

@@ -45,6 +45,7 @@ export default {
       return this.$store.state.activeEnemy;
     }
   },
+  methods: {},
   mounted() {}
 };
 </script>

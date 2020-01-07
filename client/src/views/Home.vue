@@ -107,6 +107,12 @@ export default {
     },
     goCreate() {
       this.$router.push("/create");
+    },
+    reset() {
+      this.$store.state.activePlayer.currentHp = this.$store.state.activePlayer.baseHp;
+      this.$store.state.activeEnemy.currentHp = this.$store.state.activeEnemy.baseHp;
+      this.$store.state.activePlayer.hits = 0;
+      this.$store.state.activeEnemy.hits = 0;
     }
   },
   data() {

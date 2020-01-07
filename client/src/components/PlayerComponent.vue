@@ -16,18 +16,30 @@
     </div>
     <div class="row justify-content-center">
       <div class="col-5 text-center mb-2">
-        <button class="nes-btn is-warning small">{{activePlayer.attacks[0].name}}</button>
+        <button
+          class="nes-btn is-warning small"
+          @click="attackOne()"
+        >{{activePlayer.attacks[0].name}}</button>
       </div>
       <div class="col-5 text-center mb-2">
-        <button class="nes-btn is-warning small">{{activePlayer.attacks[1].name}}</button>
+        <button
+          class="nes-btn is-warning small"
+          @click="attackTwo()"
+        >{{activePlayer.attacks[1].name}}</button>
       </div>
     </div>
     <div class="row justify-content-center">
       <div class="col-5 text-center mb-2">
-        <button class="nes-btn is-warning small">{{activePlayer.attacks[2].name}}</button>
+        <button
+          class="nes-btn is-warning small"
+          @click="attackThree()"
+        >{{activePlayer.attacks[2].name}}</button>
       </div>
       <div class="col-5 text-center mb-2">
-        <button class="nes-btn is-warning small">{{activePlayer.attacks[3].name}}</button>
+        <button
+          class="nes-btn is-warning small"
+          @click="attackFour()"
+        >{{activePlayer.attacks[3].name}}</button>
       </div>
     </div>
   </div>
@@ -45,12 +57,28 @@ export default {
     }
   },
   methods: {
-    update() {
-      playerHealthElement.textContent = "HP: " + player.health.toString();
-      playerHitElement.textContent = "HITS: " + player.hits.toString();
-      enemyHealthElement.textContent = "HP: " + enemy.health.toString();
-      enemyHitElement.textContent = "HITS: " + enemy.hits.toString();
+    attackOne() {
+      this.$store.state.activeEnemy.currentHp -= this.$store.state.activePlayer.attacks[0].AD;
+      this.$store.state.activeEnemy.hits++;
+    },
+    attackTwo() {
+      this.$store.state.activeEnemy.currentHp -= this.$store.state.activePlayer.attacks[1].AD;
+      this.$store.state.activeEnemy.hits++;
+    },
+    attackThree() {
+      this.$store.state.activeEnemy.currentHp -= this.$store.state.activePlayer.attacks[2].AD;
+      this.$store.state.activeEnemy.hits++;
+    },
+    attackFour() {
+      this.$store.state.activeEnemy.currentHp -= this.$store.state.activePlayer.attacks[3].AD;
+      this.$store.state.activeEnemy.hits++;
     }
+    // gameOver() {
+    //   if (this.$store.state.activePlayer.currentHp <= 0) {
+    //     alert("Way to go, Morty...");
+    //     reset();
+    //   }
+    // }
   }
 };
 </script>
