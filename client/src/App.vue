@@ -5,9 +5,12 @@
 </template>
 
 <script>
+import router from "./router.js";
+import NotificationService from "./NotificationService.js";
 export default {
   name: "App",
-  mounted() {}
+  mounted() {},
+  methods: {}
 };
 </script>
 

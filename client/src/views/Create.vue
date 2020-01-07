@@ -1,14 +1,8 @@
 <template>
 <body class="container-fluid bg">
-  <div class="row justify-content-between">
-    <div class="col-1 mt-2 text-white">
-      <button class="nes-btn is-error text-white ml-2" @click="goHome()">
-        <i class="nes-icon close is-small"></i>
-      </button>
-    </div>
-  </div>
+  <Link />
   <div class="row justify-content-center">
-    <h1 class="card col-5 bg-dark text-white text-center pt-1">MAKE-A-MORTY</h1>
+    <h1 class="card col-5 bg-dark text-white text-center mt-1 pt-1">MAKE-A-MORTY</h1>
   </div>
   <div class="row justify-content-center overflow">
     <div
@@ -28,6 +22,7 @@
 
 <script>
 import router from "@/router.js";
+import Link from "../components/LinksComponent";
 export default {
   name: "create",
   data() {
@@ -58,7 +53,8 @@ export default {
         hp: 100
       };
     }
-  }
+  },
+  components: { Link }
 };
 </script>
 <style scoped>

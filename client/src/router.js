@@ -3,6 +3,8 @@ import Router from 'vue-router'
 // @ts-ignore
 import Home from './views/Home.vue'
 // @ts-ignore
+import Game from './views/Game.vue'
+// @ts-ignore
 import Login from './views/Login.vue'
 // @ts-ignore
 import Create from './views/Create.vue'
@@ -14,6 +16,11 @@ export default new Router({
     path: '/',
     name: 'home',
     component: Home
+  },
+  {
+    path: '/game',
+    name: 'game',
+    component: Game
   },
   {
     path: '/login',

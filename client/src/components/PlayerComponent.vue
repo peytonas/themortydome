@@ -45,9 +45,9 @@
   </div>
 </template>
 <script>
-let playerHealthElement = document.getElementById("playerHealth");
-let playerHealthBarElement = document.getElementById("playerHealthBar");
-let playerHitElement = document.getElementById("playerHits");
+// let playerHealthElement = document.getElementById("playerHealth");
+// let playerHealthBarElement = document.getElementById("playerHealthBar");
+// let playerHitElement = document.getElementById("playerHits");
 
 export default {
   name: "player",

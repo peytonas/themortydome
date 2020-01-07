@@ -3,7 +3,7 @@
     <p>{{activeEnemy.name}}</p>
     <img :src="activeEnemy.imgUrl" alt />
     <div class="row justify-content-center mr-1">
-      <h6 id="enemyHealth">HP: {{activeEnemy.currentHp}}</h6>
+      <h5 id="enemyHealth">HP: {{activeEnemy.currentHp}}</h5>
       <progress
         id="enemyHealthBar"
         class="nes-progress is-error"
