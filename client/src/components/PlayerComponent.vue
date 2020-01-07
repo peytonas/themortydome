@@ -4,7 +4,12 @@
     <img :src="activePlayer.imgUrl" alt />
     <div class="row justify-content-center ml-1">
       <h5 id="playerHealth">HP: {{activePlayer.hp}}</h5>
-      <progress id="playerHealthBar" class="nes-progress is-error" value="100" max="100"></progress>
+      <progress
+        id="playerHealthBar"
+        class="nes-progress is-error"
+        :value="activePlayer.hp"
+        :max="activePlayer.hp"
+      ></progress>
     </div>
     <div class="row justify-content-center">
       <h6 id="playerHits">HITS: {{activePlayer.hits}}</h6>
@@ -38,15 +43,15 @@ export default {
     activePlayer() {
       return this.$store.state.activePlayer;
     }
+  },
+  methods: {
+    update() {
+      playerHealthElement.textContent = "HP: " + player.health.toString();
+      playerHitElement.textContent = "HITS: " + player.hits.toString();
+      enemyHealthElement.textContent = "HP: " + enemy.health.toString();
+      enemyHitElement.textContent = "HITS: " + enemy.hits.toString();
+    }
   }
-  // methods: {
-  //   update() {
-  //     playerHealthElement.textContent = "HEALTH: " + player.health.toString();
-  //     playerHitElement.textContent = "HITS: " + player.hits.toString();
-  //     enemyHealthElement.textContent = "HEALTH: " + enemy.health.toString();
-  //     enemyHitElement.textContent = "HITS: " + enemy.hits.toString();
-  //   }
-  // }
 };
 </script>
 <style>
