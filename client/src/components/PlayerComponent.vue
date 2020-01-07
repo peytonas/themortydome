@@ -3,12 +3,12 @@
     <p>{{activePlayer.name}}</p>
     <img :src="activePlayer.imgUrl" alt />
     <div class="row justify-content-center ml-1">
-      <h5 id="playerHealth">HP: {{activePlayer.hp}}</h5>
+      <h5 id="playerHealth">HP: {{activePlayer.currentHp}}</h5>
       <progress
         id="playerHealthBar"
         class="nes-progress is-error"
-        :value="activePlayer.hp"
-        :max="activePlayer.hp"
+        :value="activePlayer.currentHp"
+        :max="activePlayer.baseHp"
       ></progress>
     </div>
     <div class="row justify-content-center">

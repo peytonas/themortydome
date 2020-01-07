@@ -3,12 +3,6 @@ import { stringify } from "querystring"
 const Schema = mongoose.Schema
 const ObjectId = Schema.Types.ObjectId
 
-// let image = new Schema({
-//   img: {
-//     data: Buffer, contentType: String
-//   }
-// });
-
 let _schema = new Schema({
   name: { type: String, required: true },
   number: { type: String, required: true },
@@ -16,7 +10,8 @@ let _schema = new Schema({
   imgUrl: { type: String, default: 'https://placehold.it/200x200' },
   // image: { image },
   description: { type: String, maxlength: 500 },
-  hp: { type: Number },
+  baseHp: { type: Number },
+  currentHp: { type: Number },
   hits: { type: Number, default: 0 },
   attacks: [{
     name: { type: String, required: true },

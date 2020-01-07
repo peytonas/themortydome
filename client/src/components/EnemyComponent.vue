@@ -3,8 +3,13 @@
     <p>{{activeEnemy.name}}</p>
     <img :src="activeEnemy.imgUrl" alt />
     <div class="row justify-content-center mr-1">
-      <h6 id="enemyHealth">HP: {{activeEnemy.hp}}</h6>
-      <progress id="enemyHealthBar" class="nes-progress is-error" value="100" max="100"></progress>
+      <h6 id="enemyHealth">HP: {{activeEnemy.currentHp}}</h6>
+      <progress
+        id="enemyHealthBar"
+        class="nes-progress is-error"
+        :value="activeEnemy.currentHp"
+        :max="activeEnemy.baseHp"
+      ></progress>
     </div>
     <div class="row justify-content-center">
       <h6 id="enemyHits">HITS: {{activeEnemy.hits}}</h6>
