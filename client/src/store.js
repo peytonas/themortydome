@@ -62,10 +62,14 @@ export default new Vuex.Store({
         })
     },
     async getPlayer({ commit, dispatch }, fighterId) {
-      api.get(`fighters/` + fighterId)
-        .then(res => {
-          commit('setActivePlayer', res.data)
-        })
+      if (!fighterId) {
+        console.log("make a selection");
+      } else {
+        api.get(`fighters/` + fighterId)
+          .then(res => {
+            commit('setActivePlayer', res.data)
+          })
+      }
     },
     async addFighter({ commit, dispatch }, fighterData) {
       try {
