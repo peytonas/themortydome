@@ -1,7 +1,7 @@
 <template>
 <body class="container-fluid bg">
   <div class="row justify-content-center">
-    <div class="col-5 font mt-1">
+    <div class="col-4 font mt-1">
       <form v-if="loginForm" @submit.prevent="loginUser">
         <input class="nes-input" type="email" v-model="creds.email" placeholder="email" />
         <input class="nes-input" type="password" v-model="creds.password" placeholder="password" />
@@ -13,14 +13,16 @@
         <input class="nes-input" type="password" v-model="newUser.password" placeholder="password" />
         <button class="nes-btn is-primary mt-2">Create Account</button>
       </form>
-      <div class="mt-1 text-white" @click="loginForm = !loginForm">
-        <p v-if="loginForm">
-          <b>No account? Click here to Register</b>
-        </p>
-        <p v-else>
-          <b>Already have an account? Click here to Login</b>
-        </p>
-      </div>
+    </div>
+  </div>
+  <div class="row justify-content-center">
+    <div class="nes-container is-rounded is-dark" @click="loginForm = !loginForm">
+      <p v-if="loginForm">
+        <b>No account? Click here to Register</b>
+      </p>
+      <p v-else>
+        <b>Already have an account? Click here to Login</b>
+      </p>
     </div>
   </div>
 </body>
@@ -62,7 +64,7 @@ export default {
 
 <style scoped>
 .bg {
-  background-image: url("https://img3.goodfon.com/wallpaper/nbig/1/d3/portal-rick-and-morty-fantastika-rik-i-morti.jpg");
+  background-image: url("https://wallpaperboat.com/wp-content/uploads/2019/04/rick-and-morty-wallpaper-portal-wallpaper-007.jpg");
   height: 688px;
   background-attachment: fixed;
   background-repeat: no-repeat;

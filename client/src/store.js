@@ -23,6 +23,7 @@ export default new Vuex.Store({
     activeEnemy: {},
     activePlayer: {},
     user: {},
+    users: []
   },
   mutations: {
     resetState(state, user) {
@@ -30,6 +31,9 @@ export default new Vuex.Store({
     },
     setUser(state, user) {
       state.user = user
+    },
+    setUsers(state, users) {
+      state.users = users
     },
     setFighters(state, fighters) {
       state.fighters = fighters
@@ -44,7 +48,7 @@ export default new Vuex.Store({
   actions: {
     async getFighters({ commit, dispatch, state }) {
       try {
-        let fighters = await api.get(`/fighters/`)
+        let fighters = await api.get(`/fighters`)
         commit('setFighters', fighters.data)
         return state.fighters
       } catch (error) {
@@ -52,13 +56,13 @@ export default new Vuex.Store({
       }
     },
     async getEnemy({ commit, dispatch }, fighterId) {
-      api.get(`/fighters/5df01fa5c260cd61e53e8e2f`)
+      api.get(`fighters/5df01fa5c260cd61e53e8e2f`)
         .then(res => {
           commit('setActiveEnemy', res.data)
         })
     },
     async getPlayer({ commit, dispatch }, fighter) {
-      api.get(`/fighters/5e0be0f7366ab17ab0ae7dc3`)
+      api.get(`fighters/5e0be0f7366ab17ab0ae7dc3`)
         .then(res => {
           commit('setActivePlayer', res.data)
         })
@@ -67,6 +71,15 @@ export default new Vuex.Store({
       try {
         let res = await api.post('fighters', fighterData)
         dispatch('getFighters')
+      } catch (error) {
+        console.error(error)
+      }
+    },
+    async getUsers({ commit, dispatch, state }) {
+      try {
+        let users = await api.get(`/users`)
+        commit('setUsers', users.data)
+        return state.users
       } catch (error) {
         console.error(error)
       }

@@ -34,12 +34,11 @@ import Session from "./middleware/session"
 server.use(new Session().express)
 server.use('/account', new AuthController().router)
 
-
 //YOUR ROUTES HERE!!!!!!
 import FightersController from './controllers/FightersController'
+import UserController from './controllers/UserController'
 server.use('/api/fighters', new FightersController().router)
-
-
+server.use('/api/users', new UserController().router)
 
 //Default Error Handler
 server.use((error, req, res, next) => {

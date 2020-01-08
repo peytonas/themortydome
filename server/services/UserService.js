@@ -11,7 +11,8 @@ let _schema = new Schema({
   name: { type: String, required: true },
   //every email must be unique on the database
   email: { type: String, required: true, unique: true },
-  hash: { type: String, required: true }
+  hash: { type: String, required: true },
+  highScore: { type: Number, required: true, default: 0 }
 }, { timestamps: true })
 
 //schema.methods are used to add a method to a Model instance
@@ -31,7 +32,7 @@ _schema.methods.validatePassword = function (password) {
 
 export default class UserService {
   get repository() {
-    return mongoose.model('User', _schema)
+    return mongoose.model('user', _schema)
   }
   static generateHash(password) {
     return bcrypt.hashSync(password, SALT)

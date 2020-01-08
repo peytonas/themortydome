@@ -15,6 +15,14 @@
     <div class="col-3">
       <div class="card mb-2">
         <h4>HIGH SCORES</h4>
+        <table>
+          <tr>
+            <th>user</th>
+            <th>score</th>
+            <th>date</th>
+          </tr>
+          <User v-for="user in users" :userProp="user" :key="user._id" />
+        </table>
       </div>
     </div>
   </div>
@@ -23,18 +31,16 @@
 
 <script>
 import Auth from "../AuthService";
-import Enemy from "../components/EnemyComponent";
-import Player from "../components/PlayerComponent";
-import Item from "../components/ItemComponent";
 import Link from "../components/LinksComponent";
+import User from "../components/ScoreComponent";
 
 export default {
   name: "home",
   mounted() {
     this.getFighters();
+    this.getUsers();
   },
   methods: {
-    //NOTE should make chosen Morty the "activePlayer" and render via PlayerComponent .
     selectMorty(fighter) {
       this.$store.dispatch("getPlayer", fighter._id);
       console.log(this.$store.state.activePlayer.name);
@@ -44,13 +50,20 @@ export default {
     },
     getFighters() {
       this.$store.dispatch("getFighters");
+    },
+    getUsers() {
+      this.$store.dispatch("getUsers");
     }
   },
   data() {
     return {};
   },
-  computed: {},
-  components: { Enemy, Player, Item, Link }
+  computed: {
+    users() {
+      return this.$store.state.users;
+    }
+  },
+  components: { Link, User }
 };
 </script>
 <style scoped>
