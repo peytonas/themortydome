@@ -1,24 +1,28 @@
 <template>
 <body class="home bg container-fluid">
   <Link />
-  <div class="row justify-content-center">
-    <!-- <form @submit.prevent="selectMorty()" class="col-4 ml-2">
-      <div class="nes-select is-success">
-        <select name="fighters" required>
-          <option value disabled selected hidden>PICK-A-MORTY...</option>
-          <option
-            value="fighter"
-            v-for="fighter in this.$store.state.fighters"
-            :fighterProp="fighter.name"
+  <div id="myModal" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <h4 class="modal-title">PICK-A-MORTY</h4>
+        </div>
+        <div class="modal-body">
+          <p
+            v-for="fighter in fighters"
+            :fighterProp="fighter"
             :key="fighter._id"
-          >{{fighter.number}}. {{fighter.name}}</option>
-        </select>
+            @click="selectMorty(fighter._id)"
+          >{{fighter.number}}. {{fighter.name}}</p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">&times;</button>
+        </div>
       </div>
-      <div class="text-center">
-        <button type="submit" value="submit" class="nes-btn is-success mt-2">select</button>
-      </div>
-    </form>-->
+    </div>
   </div>
+
   <div class="row justify-content-between text-center">
     <div class="col-4">
       <Player />
@@ -46,11 +50,19 @@ export default {
     this.getFighters();
     this.$store.dispatch("getEnemy");
     this.$store.dispatch("getPlayer");
+    this.modalOpen();
+  },
+  computed: {
+    fighters() {
+      return this.$store.state.fighters;
+    }
   },
   methods: {
-    selectMorty(fighter) {
-      this.$store.dispatch("getPlayer", fighter._id);
-      console.log(this.$store.state.activePlayer.name);
+    modalOpen() {
+      $("#myModal").modal("show");
+    },
+    selectMorty(fighterId) {
+      this.$store.dispatch("getPlayer", fighterId);
     },
     getFighters() {
       this.$store.dispatch("getFighters");

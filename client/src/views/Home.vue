@@ -10,7 +10,7 @@
   <div class="row justify-content-center text-center">
     <div class="col-3"></div>
     <div class="col-6 text-center">
-      <button class="nes-btn is-error mb-2" @click="goFight()">FIGHT</button>
+      <button class="nes-btn is-error mb-2" @click="goFight()">NEW GAME</button>
     </div>
     <div class="col-3">
       <div class="card mb-2">
@@ -41,10 +41,6 @@ export default {
     this.getUsers();
   },
   methods: {
-    selectMorty(fighter) {
-      this.$store.dispatch("getPlayer", fighter._id);
-      console.log(this.$store.state.activePlayer.name);
-    },
     goFight() {
       this.$router.push("/game");
     },
