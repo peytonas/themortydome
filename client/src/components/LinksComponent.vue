@@ -1,7 +1,8 @@
 <template>
   <div class="linksComponent">
     <div class="row justify-content-end" v-if="this.$route.name != `login`">
-      <div class="col-2 mt-3 mr-4 text-right">
+      <div class="col-2 mt-2 text-right">
+        <!-- <img class="mt-1 mb-3" :src="this.avatar" alt /> -->
         <li class="dropdown">
           <a class="dropbtn text-white">
             {{this.$store.state.user.name}}
@@ -28,6 +29,12 @@ import NotificationService from "../NotificationService.js";
 export default {
   name: "links",
   computed: {},
+  // data() {
+  //   return {
+  //     avatar:
+  //       "https://robohash.org/" + this.$store.state.user.name + "?size=40x40"
+  //   };
+  // },
   methods: {
     async logout() {
       if (

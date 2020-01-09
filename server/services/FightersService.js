@@ -7,11 +7,11 @@ let _schema = new Schema({
   name: { type: String, required: true },
   number: { type: String, required: true },
   type: { type: String, enum: ["rock", "paper", "scissors", "normal"], required: true },
-  imgUrl: { type: String, default: 'https://placehold.it/200x200' },
-  // image: { image },
+  imgUrl: { type: String },
   description: { type: String, maxlength: 500 },
   baseHp: { type: Number },
   currentHp: { type: Number },
+  avatar: { type: String },
   hits: { type: Number, default: 0 },
   attacks: [{
     name: { type: String, required: true },

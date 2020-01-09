@@ -11,6 +11,7 @@ export default class UserController {
     this.router = express.Router()
       .use(Authorize.authenticated)
       .get('', this.getAll)
+      .put('/:id', this.editUser)
   }
 
   defaultRoute(req, res, next) {
@@ -23,5 +24,16 @@ export default class UserController {
       res.send(users)
     }
     catch (err) { next(err) }
+  }
+  async editUser(req, res, next) {
+    try {
+      let user = await _userService.findOneAndUpdate({ _id: req.params.id, }, req.body, { new: true })
+      if (!user) {
+        throw new Error("invalid id broh")
+      }
+      return res.send(user)
+    } catch (error) {
+      next(error)
+    }
   }
 }

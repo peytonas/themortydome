@@ -1,12 +1,11 @@
 <template>
 <body class="home bg container-fluid">
-  <Link />
   <div id="myModal" class="modal fade" role="dialog">
     <div class="modal-dialog">
-      <!-- Modal content-->
       <div class="modal-content">
-        <div class="modal-header">
+        <div class="modal-header bg-success text-center">
           <h4 class="modal-title">PICK-A-MORTY</h4>
+          <button type="button" class="btn btn-default" data-dismiss="modal">&times;</button>
         </div>
         <div class="modal-body">
           <p
@@ -16,22 +15,21 @@
             @click="selectMorty(fighter._id)"
           >{{fighter.number}}. {{fighter.name}}</p>
         </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-default" data-dismiss="modal">&times;</button>
-        </div>
       </div>
     </div>
   </div>
-
-  <div class="row justify-content-between text-center">
+  <Link />
+  <div class="row comp-row justify-content-between align-content-center text-center">
     <div class="col-4">
       <Player />
     </div>
-    <div class="col-2 text-center align-self-end">
-      <button class="nes-btn is-primary" @click="reset()">reset</button>
-    </div>
     <div class="col-4">
       <Enemy />
+    </div>
+  </div>
+  <div class="row justify-content-center text-center">
+    <div class="col-2 text-center align-self-end">
+      <button class="nes-btn is-primary" @click="reset()">reset</button>
     </div>
   </div>
 </body>
@@ -57,6 +55,11 @@ export default {
       return this.$store.state.fighters;
     }
   },
+  // data() {
+  //   return {
+  //     imageLink: fighter.avatar
+  //   };
+  // },
   methods: {
     modalOpen() {
       $("#myModal").modal("show");
@@ -79,6 +82,9 @@ export default {
 };
 </script>
 <style scoped>
+.comp-row {
+  height: 590px;
+}
 .bg {
   background-image: url("https://i.pinimg.com/originals/98/29/21/9829215db6f9210c0ae4e318e854cb1f.png");
   height: 688px;

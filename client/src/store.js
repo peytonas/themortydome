@@ -20,6 +20,7 @@ let api = Axios.create({
 export default new Vuex.Store({
   state: {
     fighters: [],
+    scores: [],
     activeEnemy: {},
     activePlayer: {},
     user: {},
@@ -34,6 +35,9 @@ export default new Vuex.Store({
     },
     setUsers(state, users) {
       state.users = users
+    },
+    setScores(state, scores) {
+      state.users = scores
     },
     setFighters(state, fighters) {
       state.fighters = fighters
@@ -84,6 +88,14 @@ export default new Vuex.Store({
         let users = await api.get(`/users`)
         commit('setUsers', users.data)
         return state.users
+      } catch (error) {
+        console.error(error)
+      }
+    },
+    async editUser({ commit, dispatch, state }, user) {
+      try {
+        let newUser = await api.put(`/users/${user.id}`, user)
+        commit('setUser', newUser.data)
       } catch (error) {
         console.error(error)
       }
