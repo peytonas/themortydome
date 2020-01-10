@@ -13,6 +13,9 @@ let _schema = new Schema({
   email: { type: String, required: true, unique: true },
   hash: { type: String, required: true },
   highScore: { type: Number, required: true, default: 0 },
+  mortyDex: [
+    { type: ObjectId, ref: 'fighter', required: true }
+  ],
   avatar: { type: String }
 }, { timestamps: true })
 

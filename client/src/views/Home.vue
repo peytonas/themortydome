@@ -1,11 +1,11 @@
 <template>
 <body class="home bg container-fluid">
-  <Link />
+  <Links />
   <div class="row justify-content-around">
     <img class="height" src="https://thumbs.gfycat.com/MagnificentRectangularFinch-max-1mb.gif" alt />
     <div class="col-6 text-center nes-container is-centered is-dark is-rounded">
       <h3 class="nes-text is-warning">WELCOME TO</h3>
-      <h1 class="nes-text is-primary">THE MORTYDOME</h1>
+      <h1 class="nes-text is-warning">THE MORTYDOME</h1>
     </div>
   </div>
   <div class="row justify-content-center text-center">
@@ -14,9 +14,12 @@
     </div>
   </div>
   <div class="row justify-content-end">
-    <div class="col-5">
-      <div class="nes-table-responsive with-title">
-        <table id="myTable2" class="nes-table is-bordered is-centered is-dark">
+    <div class="col-5 text-center">
+      <div class="nes-container is-rounded is-dark ml-n2">
+        <h3 class="nes-text is-primary">HIGH SCORES</h3>
+      </div>
+      <div class="nes-table-responsive ml-4">
+        <table id="myTable2" class="nes-text is-primary nes-table is-bordered is-centered is-dark">
           <thead>
             <tr>
               <th @click="sortTable(0)">user</th>
@@ -25,7 +28,7 @@
             </tr>
           </thead>
           <tbody>
-            <User v-for="user in users" :userProp="user" :key="user._id" />
+            <User v-for="user in users" v-if="user.highScore > 0" :userProp="user" :key="user._id" />
           </tbody>
         </table>
       </div>
@@ -36,13 +39,12 @@
 
 <script>
 import Auth from "../AuthService";
-import Link from "../components/LinksComponent";
+import Links from "../components/LinksComponent";
 import User from "../components/ScoreComponent";
 
 export default {
   name: "home",
   mounted() {
-    this.getFighters();
     this.getUsers();
     this.getScores();
     this.sortTable();
@@ -51,24 +53,16 @@ export default {
     goFight() {
       this.$router.push("/game");
     },
-    getFighters() {
-      this.$store.dispatch("getFighters");
-    },
     getUsers() {
       this.$store.dispatch("getUsers");
     },
     getScores() {
       for (var key in this.$store.state.users) {
         if (this.$store.state.users[key].highScore) {
-          this.$store.state.scores.push(this.$store.state.users[key].highScore);
+          // this.$store.state.scores.push(this.$store.state.users[key].highScore);
           this.$store.dispatch("getUsers");
-          // console.log(this.$store.state.scores.length);
-          // console.log(this.$store.state.scores[0]);
-          // console.log(this.$store.state.scores[1]);
-          // console.log(this.$store.state.scores[2]);
         }
       }
-      // this.$store.dispatch("getScores");
     },
     sortTable(n) {
       var table,
@@ -141,7 +135,7 @@ export default {
       return this.$store.state.users;
     }
   },
-  components: { Link, User }
+  components: { Links, User }
 };
 </script>
 <style scoped>

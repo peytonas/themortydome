@@ -10,7 +10,6 @@
         <div class="modal-body">
           <p
             v-for="fighter in fighters"
-            v-if="fighter.beaten == true"
             :fighterProp="fighter"
             :key="fighter._id"
             @click="selectMorty(fighter._id)"

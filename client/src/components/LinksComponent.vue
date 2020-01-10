@@ -2,7 +2,6 @@
   <div class="linksComponent">
     <div class="row justify-content-end" v-if="this.$route.name != `login`">
       <div class="col-2 mt-2 text-right">
-        <!-- <img class="mt-1 mb-3" :src="this.avatar" alt /> -->
         <li class="dropdown">
           <a class="dropbtn text-white">
             {{this.$store.state.user.name}}
@@ -27,7 +26,7 @@
 <script>
 import NotificationService from "../NotificationService.js";
 export default {
-  name: "link",
+  name: "links",
   computed: {},
   // data() {
   //   return {
@@ -69,20 +68,20 @@ export default {
   display: none;
   position: absolute;
   right: 0;
-  background-color: #f9f9f9;
+  background-color: #5ab54c;
   min-width: 160px;
   box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
   z-index: 1;
 }
 
 .dropdown-content a {
-  color: black;
+  color: white;
   text-decoration: none;
   display: block;
 }
 
 .dropdown-content a:hover {
-  background-color: #a19e9e;
+  background-color: #3e8e41;
 }
 
 .dropdown:hover .dropdown-content {

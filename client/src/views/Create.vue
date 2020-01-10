@@ -25,6 +25,9 @@ import router from "@/router.js";
 import Link from "../components/LinksComponent";
 export default {
   name: "create",
+  mounted() {
+    this.$store.dispatch("getFighters");
+  },
   data() {
     return {
       newFighter: {

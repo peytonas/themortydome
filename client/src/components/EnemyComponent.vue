@@ -52,7 +52,11 @@ export default {
     getEnemy() {
       var i;
       for (i = 0; i < this.$store.state.fighters.length; i++) {
-        if (this.$store.state.fighters[i].beaten == false) {
+        console.log(this.$store.state.fighters[i].name);
+        if (
+          this.$store.state.fighters[i]._id !=
+          this.$store.state.user.mortyDex[i]
+        ) {
           this.$store.dispatch("getEnemy", this.$store.state.fighters[i]._id);
           {
             break;

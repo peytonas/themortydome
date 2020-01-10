@@ -20,7 +20,6 @@ let api = Axios.create({
 export default new Vuex.Store({
   state: {
     fighters: [],
-    scores: [],
     activeEnemy: {},
     activePlayer: {},
     user: {},
@@ -35,9 +34,6 @@ export default new Vuex.Store({
     },
     setUsers(state, users) {
       state.users = users
-    },
-    setScores(state, scores) {
-      state.users = scores
     },
     setFighters(state, fighters) {
       state.fighters = fighters
@@ -60,13 +56,13 @@ export default new Vuex.Store({
       }
     },
     async getEnemy({ commit, dispatch }, fighterId) {
-      if (!fighterId) {
-        console.log("nobody's here broh");
-      } else {
-        api.get(`fighters/` + fighterId)
+      try {
+        await api.get(`fighters/` + fighterId)
           .then(res => {
             commit('setActiveEnemy', res.data)
           })
+      } catch (error) {
+        console.error(error, "nobody's here broh")
       }
     },
     async getPlayer({ commit, dispatch }, fighterId) {
