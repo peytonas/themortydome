@@ -50,7 +50,6 @@ export default {
     this.$store.dispatch("getEnemy");
     this.$store.dispatch("getPlayer");
     this.modalOpen();
-    // this.refresh();
   },
   computed: {
     fighters() {
@@ -61,11 +60,6 @@ export default {
     modalOpen() {
       $("#myModal").modal("show");
     },
-    // refresh() {
-    //   if (performance.navigation.type == 1) {
-    //     router.push({ path: "/" });
-    //   }
-    // },
     selectMorty(fighterId) {
       this.$store.dispatch("getPlayer", fighterId);
     },

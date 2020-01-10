@@ -49,11 +49,11 @@ export default {
   name: "home",
   data() {
     return {
-      page: 1
+      page: 0
     };
   },
   mounted() {
-    this.getUsers(1);
+    this.getUsers(0);
     this.getScores();
     this.sortTable();
   },
