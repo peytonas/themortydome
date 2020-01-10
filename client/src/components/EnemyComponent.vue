@@ -40,13 +40,27 @@ let enemyHitElement = document.getElementById("enemyHits");
 // enemyHitElement.textContent = "HITS: " + enemy.hits.toString();
 export default {
   name: "enemy",
+  mounted() {
+    this.getEnemy();
+  },
   computed: {
     activeEnemy() {
       return this.$store.state.activeEnemy;
     }
   },
-  methods: {},
-  mounted() {}
+  methods: {
+    getEnemy() {
+      var i;
+      for (i = 0; i < this.$store.state.fighters.length; i++) {
+        if (this.$store.state.fighters[i].beaten == false) {
+          this.$store.dispatch("getEnemy", this.$store.state.fighters[i]._id);
+          {
+            break;
+          }
+        }
+      }
+    }
+  }
 };
 </script>
 <style>

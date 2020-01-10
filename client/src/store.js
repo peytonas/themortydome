@@ -60,10 +60,14 @@ export default new Vuex.Store({
       }
     },
     async getEnemy({ commit, dispatch }, fighterId) {
-      api.get(`fighters/5df01fa5c260cd61e53e8e2f`)
-        .then(res => {
-          commit('setActiveEnemy', res.data)
-        })
+      if (!fighterId) {
+        console.log("nobody's here broh");
+      } else {
+        api.get(`fighters/` + fighterId)
+          .then(res => {
+            commit('setActiveEnemy', res.data)
+          })
+      }
     },
     async getPlayer({ commit, dispatch }, fighterId) {
       if (!fighterId) {

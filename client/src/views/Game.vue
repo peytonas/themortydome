@@ -10,9 +10,11 @@
         <div class="modal-body">
           <p
             v-for="fighter in fighters"
+            v-if="fighter.beaten == true"
             :fighterProp="fighter"
             :key="fighter._id"
             @click="selectMorty(fighter._id)"
+            data-dismiss="modal"
           >{{fighter.number}}. {{fighter.name}}</p>
         </div>
       </div>
@@ -49,21 +51,22 @@ export default {
     this.$store.dispatch("getEnemy");
     this.$store.dispatch("getPlayer");
     this.modalOpen();
+    // this.refresh();
   },
   computed: {
     fighters() {
       return this.$store.state.fighters;
     }
   },
-  // data() {
-  //   return {
-  //     imageLink: fighter.avatar
-  //   };
-  // },
   methods: {
     modalOpen() {
       $("#myModal").modal("show");
     },
+    // refresh() {
+    //   if (performance.navigation.type == 1) {
+    //     router.push({ path: "/" });
+    //   }
+    // },
     selectMorty(fighterId) {
       this.$store.dispatch("getPlayer", fighterId);
     },
@@ -77,7 +80,6 @@ export default {
       this.$store.state.activeEnemy.hits = 0;
     }
   },
-
   components: { Enemy, Player, Item, Link }
 };
 </script>

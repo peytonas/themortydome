@@ -2,6 +2,7 @@
 <body class="home bg container-fluid">
   <Link />
   <div class="row justify-content-around">
+    <img class="height" src="https://thumbs.gfycat.com/MagnificentRectangularFinch-max-1mb.gif" alt />
     <div class="col-6 text-center nes-container is-centered is-dark is-rounded">
       <h3 class="nes-text is-warning">WELCOME TO</h3>
       <h1 class="nes-text is-primary">THE MORTYDOME</h1>
@@ -44,6 +45,7 @@ export default {
     this.getFighters();
     this.getUsers();
     this.getScores();
+    this.sortTable();
   },
   methods: {
     goFight() {
@@ -59,10 +61,11 @@ export default {
       for (var key in this.$store.state.users) {
         if (this.$store.state.users[key].highScore) {
           this.$store.state.scores.push(this.$store.state.users[key].highScore);
-          console.log(this.$store.state.scores.length);
-          console.log(this.$store.state.scores[0]);
-          console.log(this.$store.state.scores[1]);
-          console.log(this.$store.state.scores[2]);
+          this.$store.dispatch("getUsers");
+          // console.log(this.$store.state.scores.length);
+          // console.log(this.$store.state.scores[0]);
+          // console.log(this.$store.state.scores[1]);
+          // console.log(this.$store.state.scores[2]);
         }
       }
       // this.$store.dispatch("getScores");
@@ -80,7 +83,7 @@ export default {
       table = document.getElementById("myTable2");
       switching = true;
       // Set the sorting direction to ascending:
-      dir = "desc";
+      dir = "asc";
       /* Make a loop that will continue until
   no switching has been done: */
       while (switching) {
@@ -98,13 +101,13 @@ export default {
           y = rows[i + 1].getElementsByTagName("TD")[n];
           /* Check if the two rows should switch place,
       based on the direction, asc or desc: */
-          if (dir == "desc") {
+          if (dir == "asc") {
             if (x.innerHTML.toLowerCase() > y.innerHTML.toLowerCase()) {
               // If so, mark as a switch and break the loop:
               shouldSwitch = true;
               break;
             }
-          } else if (dir == "asc") {
+          } else if (dir == "desc") {
             if (x.innerHTML.toLowerCase() < y.innerHTML.toLowerCase()) {
               // If so, mark as a switch and break the loop:
               shouldSwitch = true;
@@ -122,8 +125,8 @@ export default {
         } else {
           /* If no switching has been done AND the direction is "asc",
       set the direction to "desc" and run the while loop again. */
-          if (switchcount == 0 && dir == "desc") {
-            dir = "asc";
+          if (switchcount == 0 && dir == "asc") {
+            dir = "desc";
             switching = true;
           }
         }
@@ -142,6 +145,14 @@ export default {
 };
 </script>
 <style scoped>
+.height {
+  height: 165px;
+  width: auto;
+  position: absolute;
+  top: 1;
+  padding: 15px;
+  left: 0;
+}
 .bg {
   height: 688px;
   background: linear-gradient(#4caf50, yellow) no-repeat;

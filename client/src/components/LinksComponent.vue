@@ -27,7 +27,7 @@
 <script>
 import NotificationService from "../NotificationService.js";
 export default {
-  name: "links",
+  name: "link",
   computed: {},
   // data() {
   //   return {
