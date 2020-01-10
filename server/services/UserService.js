@@ -32,11 +32,12 @@ _schema.methods.validatePassword = function (password) {
 }
 
 //statics are used to create Model methods
-
-
 export default class UserService {
   get repository() {
     return mongoose.model('user', _schema)
+  }
+  async getAll(skip) {
+    return this.repository.find({}).skip(skip * 5).limit(5);
   }
   static generateHash(password) {
     return bcrypt.hashSync(password, SALT)

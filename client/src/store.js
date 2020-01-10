@@ -23,6 +23,7 @@ export default new Vuex.Store({
     activeEnemy: {},
     activePlayer: {},
     user: {},
+    scores: [],
     users: []
   },
   mutations: {
@@ -34,6 +35,9 @@ export default new Vuex.Store({
     },
     setUsers(state, users) {
       state.users = users
+    },
+    setScores(state, scores) {
+      state.scores = scores
     },
     setFighters(state, fighters) {
       state.fighters = fighters
@@ -83,9 +87,10 @@ export default new Vuex.Store({
         console.error(error)
       }
     },
-    async getUsers({ commit, dispatch, state }) {
+    async getUsers({ commit, dispatch, state }, page) {
+      debugger
       try {
-        let users = await api.get(`/users`)
+        let users = await api.get(`/users?page=` + page)
         commit('setUsers', users.data)
         return state.users
       } catch (error) {

@@ -3,6 +3,7 @@ import express from 'express'
 import { Authorize } from '../middleware/authorize.js'
 
 let _userService = new UserService().repository
+let userService = new UserService()
 
 
 //PUBLIC
@@ -20,8 +21,9 @@ export default class UserController {
 
   async getAll(req, res, next) {
     try {
-      let users = await _userService.find({})
-      res.send(users)
+      let skip = req.query.page || 0
+      let users = await userService.getAll(skip)
+      return res.send(users)
     }
     catch (err) { next(err) }
   }

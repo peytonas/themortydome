@@ -21,16 +21,19 @@
       <div class="nes-table-responsive ml-4">
         <table id="myTable2" class="nes-text is-primary nes-table is-bordered is-centered is-dark">
           <thead>
-            <tr>
+            <tr class="text-white">
               <th @click="sortTable(0)">user</th>
               <th @click="sortTable(1)">score</th>
               <th>date</th>
             </tr>
           </thead>
           <tbody>
-            <User v-for="user in users" v-if="user.highScore > 0" :userProp="user" :key="user._id" />
+            <User v-for="user in users" :userProp="user" :key="user._id" />
           </tbody>
         </table>
+        <button class="nes-btn is-error" @click="getUsers(--page)">prev</button>
+
+        <button class="nes-btn is-error" @click="getUsers(++page)">next</button>
       </div>
     </div>
   </div>
@@ -44,8 +47,13 @@ import User from "../components/ScoreComponent";
 
 export default {
   name: "home",
+  data() {
+    return {
+      page: 1
+    };
+  },
   mounted() {
-    this.getUsers();
+    this.getUsers(1);
     this.getScores();
     this.sortTable();
   },
@@ -53,8 +61,8 @@ export default {
     goFight() {
       this.$router.push("/game");
     },
-    getUsers() {
-      this.$store.dispatch("getUsers");
+    getUsers(page) {
+      this.$store.dispatch("getUsers", page);
     },
     getScores() {
       for (var key in this.$store.state.users) {
@@ -126,9 +134,6 @@ export default {
         }
       }
     }
-  },
-  data() {
-    return {};
   },
   computed: {
     users() {
