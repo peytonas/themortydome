@@ -23,7 +23,6 @@ export default new Vuex.Store({
     activeEnemy: {},
     activePlayer: {},
     user: {},
-    scores: [],
     users: []
   },
   mutations: {
@@ -35,9 +34,6 @@ export default new Vuex.Store({
     },
     setUsers(state, users) {
       state.users = users
-    },
-    setScores(state, scores) {
-      state.scores = scores
     },
     setFighters(state, fighters) {
       state.fighters = fighters
@@ -70,13 +66,13 @@ export default new Vuex.Store({
       }
     },
     async getPlayer({ commit, dispatch }, fighterId) {
-      if (!fighterId) {
-        console.log("make a selection");
-      } else {
-        api.get(`fighters/` + fighterId)
+      try {
+        await api.get(`fighters/` + fighterId)
           .then(res => {
             commit('setActivePlayer', res.data)
           })
+      } catch (error) {
+        console.error(error, "where'd you go, Morty?")
       }
     },
     async addFighter({ commit, dispatch }, fighterData) {
@@ -88,7 +84,6 @@ export default new Vuex.Store({
       }
     },
     async getUsers({ commit, dispatch, state }, page) {
-      debugger
       try {
         let users = await api.get(`/users?page=` + page)
         commit('setUsers', users.data)

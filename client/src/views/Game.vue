@@ -47,7 +47,6 @@ export default {
   name: "game",
   mounted() {
     this.getFighters();
-    this.$store.dispatch("getEnemy");
     this.$store.dispatch("getPlayer");
     this.modalOpen();
   },
@@ -71,6 +70,7 @@ export default {
       this.$store.state.activeEnemy.currentHp = this.$store.state.activeEnemy.baseHp;
       this.$store.state.activePlayer.hits = 0;
       this.$store.state.activeEnemy.hits = 0;
+      this.$store.dispatch("getEnemy", this.$store.state.activeEnemy._id);
     }
   },
   components: { Enemy, Player, Item, Link }
