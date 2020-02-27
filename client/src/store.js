@@ -83,11 +83,10 @@ export default new Vuex.Store({
         console.error(error)
       }
     },
-    async getUsers({ commit, dispatch, state }, page) {
+    async getUsers({ commit, dispatch, state }) {
       try {
-        let users = await api.get(`/users?page=` + page)
+        let users = await api.get(`/users`)
         commit('setUsers', users.data)
-        return state.users
       } catch (error) {
         console.error(error)
       }

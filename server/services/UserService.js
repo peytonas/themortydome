@@ -37,7 +37,7 @@ export default class UserService {
     return mongoose.model('user', _schema)
   }
   async getAll(skip) {
-    return this.repository.find({}).skip(skip * 5).limit(5);
+    return this.repository.find({}).skip(skip * 0).limit(10)
   }
   static generateHash(password) {
     return bcrypt.hashSync(password, SALT)

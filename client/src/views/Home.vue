@@ -18,23 +18,7 @@
       <div class="nes-container is-rounded is-dark ml-n2">
         <h3 class="nes-text is-primary">HIGH SCORES</h3>
       </div>
-      <div class="nes-table-responsive ml-4">
-        <table id="myTable2" class="nes-text is-primary nes-table is-bordered is-centered is-dark">
-          <thead>
-            <tr class="text-white">
-              <th @click="sortTable(0)">user</th>
-              <th @click="sortTable(1)">score</th>
-              <th>date</th>
-            </tr>
-          </thead>
-          <tbody>
-            <User v-for="user in users" :userProp="user" :key="user._id" />
-          </tbody>
-        </table>
-        <button class="nes-btn is-error" @click="getUsers(--page)">prev</button>
-
-        <button class="nes-btn is-error" @click="getUsers(++page)">next</button>
-      </div>
+      <Table />
     </div>
   </div>
 </body>
@@ -43,107 +27,98 @@
 <script>
 import Auth from "../AuthService";
 import Links from "../components/LinksComponent";
-import User from "../components/ScoreComponent";
-
+import Table from "../components/TableComponent";
 export default {
   name: "home",
   data() {
     return {
-      page: 0
+      // page: 0
     };
   },
   mounted() {
-    this.getUsers(0);
-    this.getScores();
-    this.sortTable();
+    this.getUsers();
+    // this.getScores();
+    // this.sortTable();
   },
   methods: {
     goFight() {
       this.$router.push("/game");
     },
-    getUsers(page) {
-      this.$store.dispatch("getUsers", page);
-    },
-    getScores() {
-      for (var key in this.$store.state.users) {
-        if (this.$store.state.users[key].highScore) {
-          // this.$store.state.scores.push(this.$store.state.users[key].highScore);
-          this.$store.dispatch("getUsers");
-        }
-      }
-    },
-    sortTable(n) {
-      var table,
-        rows,
-        switching,
-        i,
-        x,
-        y,
-        shouldSwitch,
-        dir,
-        switchcount = 0;
-      table = document.getElementById("myTable2");
-      switching = true;
-      // Set the sorting direction to ascending:
-      dir = "asc";
-      /* Make a loop that will continue until
-  no switching has been done: */
-      while (switching) {
-        // Start by saying: no switching is done:
-        switching = false;
-        rows = table.rows;
-        /* Loop through all table rows (except the
-    first, which contains table headers): */
-        for (i = 1; i < rows.length - 1; i++) {
-          // Start by saying there should be no switching:
-          shouldSwitch = false;
-          /* Get the two elements you want to compare,
-      one from current row and one from the next: */
-          x = rows[i].getElementsByTagName("TD")[n];
-          y = rows[i + 1].getElementsByTagName("TD")[n];
-          /* Check if the two rows should switch place,
-      based on the direction, asc or desc: */
-          if (dir == "asc") {
-            if (x.innerHTML.toLowerCase() > y.innerHTML.toLowerCase()) {
-              // If so, mark as a switch and break the loop:
-              shouldSwitch = true;
-              break;
-            }
-          } else if (dir == "desc") {
-            if (x.innerHTML.toLowerCase() < y.innerHTML.toLowerCase()) {
-              // If so, mark as a switch and break the loop:
-              shouldSwitch = true;
-              break;
-            }
-          }
-        }
-        if (shouldSwitch) {
-          /* If a switch has been marked, make the switch
-      and mark that a switch has been done: */
-          rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
-          switching = true;
-          // Each time a switch is done, increase this count by 1:
-          switchcount++;
-        } else {
-          /* If no switching has been done AND the direction is "asc",
-      set the direction to "desc" and run the while loop again. */
-          if (switchcount == 0 && dir == "asc") {
-            dir = "desc";
-            switching = true;
-          }
-        }
-      }
+    getUsers() {
+      this.$store.dispatch("getUsers");
     }
+    //   sortTable(n) {
+    //     var table,
+    //       rows,
+    //       switching,
+    //       i,
+    //       x,
+    //       y,
+    //       shouldSwitch,
+    //       dir,
+    //       switchcount = 0;
+    //     table = document.getElementById("myTable2");
+    //     switching = true;
+    //     // Set the sorting direction to ascending:
+    //     dir = "asc";
+    //     /* Make a loop that will continue until
+    // no switching has been done: */
+    //     while (switching) {
+    //       // Start by saying: no switching is done:
+    //       switching = false;
+    //       rows = table.rows;
+    //       /* Loop through all table rows (except the
+    //   first, which contains table headers): */
+    //       for (i = 1; i < rows.length - 1; i++) {
+    //         // Start by saying there should be no switching:
+    //         shouldSwitch = false;
+    //         /* Get the two elements you want to compare,
+    //     one from current row and one from the next: */
+    //         x = rows[i].getElementsByTagName("TD")[n];
+    //         y = rows[i + 1].getElementsByTagName("TD")[n];
+    //         /* Check if the two rows should switch place,
+    //     based on the direction, asc or desc: */
+    //         if (dir == "asc") {
+    //           if (x.innerHTML.toLowerCase() > y.innerHTML.toLowerCase()) {
+    //             // If so, mark as a switch and break the loop:
+    //             shouldSwitch = true;
+    //             break;
+    //           }
+    //         } else if (dir == "desc") {
+    //           if (x.innerHTML.toLowerCase() < y.innerHTML.toLowerCase()) {
+    //             // If so, mark as a switch and break the loop:
+    //             shouldSwitch = true;
+    //             break;
+    //           }
+    //         }
+    //       }
+    //       if (shouldSwitch) {
+    //         /* If a switch has been marked, make the switch
+    //     and mark that a switch has been done: */
+    //         rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
+    //         switching = true;
+    //         // Each time a switch is done, increase this count by 1:
+    //         switchcount++;
+    //       } else {
+    //         /* If no switching has been done AND the direction is "asc",
+    //     set the direction to "desc" and run the while loop again. */
+    //         if (switchcount == 0 && dir == "asc") {
+    //           dir = "desc";
+    //           switching = true;
+    //         }
+    //       }
+    //     }
+    //   }
   },
   computed: {
     users() {
       return this.$store.state.users;
     }
   },
-  components: { Links, User }
+  components: { Links, Table }
 };
 </script>
-<style scoped>
+<style>
 .height {
   height: 165px;
   width: auto;
@@ -153,7 +128,7 @@ export default {
   left: 0;
 }
 .bg {
-  height: 688px;
+  height: 100vh;
   background: linear-gradient(#4caf50, yellow) no-repeat;
   -webkit-background-size: cover;
   -moz-background-size: cover;
