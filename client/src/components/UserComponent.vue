@@ -1,11 +1,10 @@
 <template>
   <div
-    class="user row"
-    :style="{order: sortScoresAsc ? total : 0 || sortScoresDesc ? -total : 0 || sortDateAsc ? singlePoints : 0 || sortDateDesc ? -singlePoints : 0}"
+    class="user row justify-content-center"
+    :style="{order: sortScoresAsc ? this.user.highScore : 0 || sortScoresDesc ? -this.user.highScore : 0}"
   >
-    <div class="col">{{userProp.name}}</div>
-    <div class="col">{{userProp.highScore}}</div>
-    <div class="col">{{this.newDate}}</div>
+    <div class="col border-right border-white ml-3">{{user.name}}</div>
+    <div class="col ml-3">{{user.highScore}}</div>
   </div>
 </template>
 <script>
@@ -15,31 +14,21 @@ export default {
   computed: {},
   data() {
     return {
-      newDate: this.userProp.updatedAt.substring(
-        0,
-        this.userProp.updatedAt.length - 14
-      )
+      newDate: this.user.updatedAt.substring(0, this.user.updatedAt.length - 14)
     };
   },
   methods: {},
-  props: [
-    "userProp",
-    "sortScoresAsc",
-    "sortScoresDesc",
-    "sortDateAsc",
-    "sortDateDesc"
-  ]
+  props: ["user", "sortScoresAsc", "sortScoresDesc"]
 };
 </script>
 <style scoped>
 .col {
-  height: 20px;
-  font-weight: bold;
+  height: 2vh;
   align-items: center;
   display: flex;
   justify-content: center;
 }
 .row {
-  font-size: 0.75rem;
+  font-size: 1rem;
 }
 </style>

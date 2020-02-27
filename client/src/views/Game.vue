@@ -10,7 +10,6 @@
         <div class="modal-body">
           <p
             v-for="fighter in fighters"
-            :fighterProp="fighter"
             :key="fighter._id"
             @click="selectMorty(fighter._id)"
             data-dismiss="modal"
@@ -30,7 +29,7 @@
   </div>
   <div class="row justify-content-center text-center">
     <div class="col-2 text-center align-self-end">
-      <button class="nes-btn is-primary" @click="reset()">reset</button>
+      <button class="nes-btn is-primary mt-n1" @click="reset()">reset</button>
     </div>
   </div>
 </body>
@@ -47,7 +46,6 @@ export default {
   name: "game",
   mounted() {
     this.getFighters();
-    this.$store.dispatch("getPlayer");
     this.modalOpen();
   },
   computed: {

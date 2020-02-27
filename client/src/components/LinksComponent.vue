@@ -1,18 +1,18 @@
 <template>
   <div class="linksComponent">
     <div class="row justify-content-end" v-if="this.$route.name != `login`">
-      <div class="col-2 mt-2 text-right">
+      <div class="col-2 mt-4 text-right">
         <li class="dropdown">
-          <a class="dropbtn text-white">
+          <a class="dropbtn nes-container is-dark is-rounded text-warning">
             {{this.$store.state.user.name}}
             <i class="fas fa-chevron-down"></i>
           </a>
           <div class="dropdown-content text-left">
             <a href="#" v-if="this.$route.name != `home`">
-              <router-link :to="{name: `home`}">Home</router-link>
+              <router-link class="size" :to="{name: `home`}">Home</router-link>
             </a>
             <a href="#" v-if="this.$route.name == `home`">
-              <router-link class="size" :to="{name: `create`}">Make-a-Morty</router-link>
+              <router-link class="size" :to="{name: `garage`}">Garage</router-link>
             </a>
             <a href="#">
               <h6 @click="logout()" aria-placeholder="logout-Button" class="logout">Logout</h6>
@@ -52,8 +52,7 @@ export default {
 </script>
 <style>
 .dropbtn {
-  background-color: #4caf50;
-  color: white;
+  background-color: #202429;
   padding: 8px 8px;
   border: none;
   cursor: pointer;
@@ -68,20 +67,13 @@ export default {
   display: none;
   position: absolute;
   right: 0;
-  background-color: #5ab54c;
+  background-color: rgba(255, 255, 255, 0.9);
   min-width: 160px;
-  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
-  z-index: 1;
 }
 
 .dropdown-content a {
-  color: white;
-  text-decoration: none;
+  color: #202429;
   display: block;
-}
-
-.dropdown-content a:hover {
-  background-color: #3e8e41;
 }
 
 .dropdown:hover .dropdown-content {
@@ -89,9 +81,9 @@ export default {
 }
 
 .dropdown:hover .dropbtn {
-  background-color: #3e8e41;
+  background-color: #202429;
 }
 .size {
-  font-size: 13px;
+  font-size: 1rem;
 }
 </style>

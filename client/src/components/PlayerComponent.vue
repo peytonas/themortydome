@@ -54,6 +54,9 @@ export default {
   computed: {
     activePlayer() {
       return this.$store.state.activePlayer;
+    },
+    mortyDex() {
+      return this.$store.state.user.mortyDex;
     }
   },
   methods: {
@@ -72,13 +75,12 @@ export default {
     attackFour() {
       this.$store.state.activeEnemy.currentHp -= this.$store.state.activePlayer.attacks[3].AD;
       this.$store.state.activeEnemy.hits++;
+    },
+    gameOver() {
+      if (this.$store.state.activePlayer.currentHp <= 0) {
+        alert("Way to go, Morty...");
+      }
     }
-    // gameOver() {
-    //   if (this.$store.state.activePlayer.currentHp <= 0) {
-    //     alert("Way to go, Morty...");
-    //     reset();
-    //   }
-    // }
   }
 };
 </script>

@@ -7,7 +7,7 @@ import Game from './views/Game.vue'
 // @ts-ignore
 import Login from './views/Login.vue'
 // @ts-ignore
-import Create from './views/Create.vue'
+import Garage from './views/Garage.vue'
 
 Vue.use(Router)
 
@@ -28,9 +28,9 @@ export default new Router({
     component: Login
   },
   {
-    path: '/create',
-    name: 'create',
-    component: Create
+    path: '/garage',
+    name: 'garage',
+    component: Garage
   },
   {
     path: "*",

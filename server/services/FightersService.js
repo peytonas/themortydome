@@ -21,8 +21,6 @@ let _schema = new Schema({
   }],
   items: [],
   authorId: { type: ObjectId, ref: 'User', required: true },
-  beaten: { type: Boolean, default: false, required: true },
-  confronted: { type: Boolean, default: false, required: true }
 }, { timestamps: true })
 
 export default class FightersService {

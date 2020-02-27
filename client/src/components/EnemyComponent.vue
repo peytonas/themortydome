@@ -16,18 +16,30 @@
     </div>
     <div class="row justify-content-center">
       <div class="col-5 text-center mb-2">
-        <button class="nes-btn is-warning small">{{activeEnemy.attacks[0].name}}</button>
+        <button
+          class="nes-btn is-warning small"
+          @click="attackOne()"
+        >{{activeEnemy.attacks[0].name}}</button>
       </div>
       <div class="col-5 text-center mb-2">
-        <button class="nes-btn is-warning small">{{activeEnemy.attacks[1].name}}</button>
+        <button
+          class="nes-btn is-warning small"
+          @click="attackTwo()"
+        >{{activeEnemy.attacks[1].name}}</button>
       </div>
     </div>
     <div class="row justify-content-center">
       <div class="col-5 text-center mb-2">
-        <button class="nes-btn is-warning small">{{activeEnemy.attacks[2].name}}</button>
+        <button
+          class="nes-btn is-warning small"
+          @click="attackThree()"
+        >{{activeEnemy.attacks[2].name}}</button>
       </div>
       <div class="col-5 text-center mb-2">
-        <button class="nes-btn is-warning small">{{activeEnemy.attacks[3].name}}</button>
+        <button
+          class="nes-btn is-warning small"
+          @click="attackFour()"
+        >{{activeEnemy.attacks[3].name}}</button>
       </div>
     </div>
   </div>
@@ -46,23 +58,43 @@ export default {
   computed: {
     activeEnemy() {
       return this.$store.state.activeEnemy;
+    },
+    user() {
+      return this.$store.state.user;
+    },
+    fighters() {
+      return this.$store.state.fighters;
     }
   },
   methods: {
     getEnemy() {
       var i;
-      for (i = 0; i < this.$store.state.fighters.length; i++) {
-        console.log(this.$store.state.fighters[i].name);
-        if (
-          this.$store.state.fighters[i]._id !=
-          this.$store.state.user.mortyDex[i]
-        ) {
-          this.$store.dispatch("getEnemy", this.$store.state.fighters[i]._id);
+      for (i = 0; i < this.fighters.length; i++) {
+        console.log(this.fighters[i].name);
+        if (this.fighters[i]._id != this.user.mortyDex[i]) {
+          this.$store.dispatch("getEnemy", this.fighters[i]._id);
+          this.user.mortyDex.push(this.fighters[i]._id);
           {
             break;
           }
         }
       }
+    },
+    attackOne() {
+      this.$store.state.activePlayer.currentHp -= this.activeEnemy.attacks[0].AD;
+      this.$store.state.activePlayer.hits++;
+    },
+    attackTwo() {
+      this.$store.state.activePlayer.currentHp -= this.activeEnemy.attacks[1].AD;
+      this.$store.state.activePlayer.hits++;
+    },
+    attackThree() {
+      this.$store.state.activePlayer.currentHp -= this.activeEnemy.attacks[2].AD;
+      this.$store.state.activePlayer.hits++;
+    },
+    attackFour() {
+      this.$store.state.activePlayer.currentHp -= this.activeEnemy.attacks[3].AD;
+      this.$store.state.activePlayer.hits++;
     }
   }
 };

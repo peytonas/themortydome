@@ -2,7 +2,7 @@
 <body class="container-fluid bg">
   <Link />
   <div class="row justify-content-center">
-    <h1 class="card col-5 bg-dark text-white text-center mt-1 pt-1">MAKE-A-MORTY</h1>
+    <h2 class="card col-5 bg-dark text-white text-center mt-1 pt-1">RICK'S GARAGE</h2>
   </div>
   <div class="row justify-content-center overflow">
     <div
