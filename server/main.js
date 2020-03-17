@@ -8,7 +8,7 @@ const server = express()
 DbContext.connect()
 
 //Sets the port to Heroku's, and the files to the built project 
-var port = process.env.PORT || 3000
+var port = 3000
 server.use(express.static(__dirname + '/../client/dist'))
 
 
@@ -51,7 +51,6 @@ server.use('*', (req, res, next) => {
     error: 'No matching routes'
   })
 })
-
 
 server.listen(port, () => {
   console.log('server running on port', port)
